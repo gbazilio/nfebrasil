@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><script src="http://www.receita.fazenda.gov.br/estatistica/grupos/www.nfe.fazenda.gov.br.js"></script><script src="http://www.receita.fazenda.gov.br/estatistica/grupos/www.nfe.fazenda.gov.br.js"></script><title>
+	Portal da Nota Fiscal Eletrônica
+</title>
+
+    <!-- CSS -->
+    <link href="css/geral.css" rel="stylesheet" type="text/css"><link href="css/classes.css" rel="stylesheet" type="text/css"><link href="css/paginasInternas.css" rel="stylesheet" type="text/css"><link href="css/estilo_visualizacao.css" rel="stylesheet" type="text/css">
+    
+
+    <!-- Javascript -->
+    <script src="scripts/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="scripts/menu.js" type="text/javascript"></script>
+    <script src="scripts/mascaras.js" type="text/javascript"></script>
+    <script src="//www.receita.fazenda.gov.br/estatistica/estatistica.js" type="text/javascript"></script>
+    <script src="scripts/captcha-som.js" type="text/javascript"></script>
+
+    <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate, Post-Check=0, Pre-Check=0"><meta http-equiv="pragma" content="no-cache"><meta http-equiv="expires" content="0">
+    <style type="text/css" media="all">#barra-brasil div,#barra-brasil a,#barra-brasil ul,#barra-brasil li{margin:0;padding:0;font-size:100%;font-family:inherit;vertical-align:baseline}#barra-brasil ul{list-style:none}@font-face{font-family:"Open Sans";font-style:normal;font-weight:700;src:local("Open Sans Bold"),local("OpenSans-Bold"),url("//barra.brasil.gov.br/static/opensans-bold.woff") format("woff")}#barra-brasil{height:32px;background:#f1f1f1;font-weight:bold;font-size:12px;line-height:32px;font-family:"Open Sans",Arial,Helvetica,sans-serif;border-bottom:1px solid #dfdfdf;box-sizing:content-box}#barra-brasil a{text-decoration:none}body.contraste #barra-brasil{background:#000 !important}div#wrapper-barra-brasil{position:relative;overflow:hidden;margin:0 auto;width:100%;max-width:960px;height:100%}#barra-brasil .brasil-flag{float:left;padding:7px 0 6px;width:115px;height:19px;border-right:2px solid #dfdfdf}#barra-brasil .brasil-flag .link-barra{display:block;padding-left:42px;width:43px;background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIxOSIgdmlld0JveD0iMCAwIDEwMDAwMCA3MDAwMCI+PHBhdGggZmlsbD0iIzAwOTIzRiIgZD0iTTAgMGgxMDAwMDB2NzAwMDBIMHoiLz48cGF0aCBmaWxsPSIjRjhDMzAwIiBkPSJNNTAwMDAgODUwMEw4NTAwIDM1MDAwbDQxNTAwIDI2NTAwIDQxNTAwLTI2NTAwTDUwMDAwIDg1MDB6Ii8+PGNpcmNsZSBmaWxsPSIjMjgxNjZGIiBjeD0iNDk5NjMiIGN5PSIzNTAwMCIgcj0iMTc0NjQiLz48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMzk1MzcgMjk2MDVjMTAzODggMCAxOTkxMSAzODIxIDI3MjM4IDEwMTI3IDI0Mi04NTAgNDIxLTE3MjYgNTMyLTI2MjItNzU5Ny02MTYyLTE3MjY1LTk4NjItMjc3NzAtOTg2Mi0xODIxIDAtMzYxNyAxMTQtNTM4MiAzMzAtMzc3IDgwNS02OTUgMTY0Mi05NDggMjUwNyAyMDY1LTMxNiA0MTc5LTQ4MCA2MzMwLTQ4MHoiLz48L3N2Zz4K") 8px center no-repeat;text-transform:uppercase;line-height:19px}#barra-brasil .acesso-info{position:absolute;left:130px}#barra-brasil .list{position:absolute;top:0;right:0}#barra-brasil .list .first{border-left:2px solid #dfdfdf}#barra-brasil .list-item{display:inline-block;height:32px;line-height:32px;border-right:2px solid #dfdfdf}#barra-brasil .list-item a{padding:8px 15px 8px 13px}#barra-brasil .link-barra{color:#606060}body.contraste #barra-brasil .link-barra{color:#FF0 !important;text-decoration:underline}#menu-icon{position:absolute;top:3px;border-top:15px double #606060;border-bottom:5px solid #606060;display:none;width:20px;right:5px}@media only screen and (max-width: 959px){#barra-brasil #menu-icon{display:inline-block;padding:5px 3px 0px 3px}#barra-brasil .list .first{border-left:1px solid #dfdfdf}#barra-brasil nav:hover #menu-icon,#barra-brasil nav:active #menu-icon,#barra-brasil nav:focus #menu-icon{background-color:#DDD}body.contraste #barra-brasil nav:hover #menu-icon,body.contraste #barra-brasil nav:active #menu-icon,body.contraste #barra-brasil nav:focus #menu-icon{background-color:#606060 !important}#barra-brasil ul.list,#barra-brasil ul.list:active,#barra-brasil ul.list:focus{overflow:hidden;height:0px;transition:0.3s;padding-top:32px;width:auto;position:absolute;z-index:9}#barra-brasil .list-item{display:block;text-align:center;height:30px;background:#EEE;border:1px solid #dfdfdf}#barra-brasil .list-item a{padding:8px 30px 8px 28px}body.contraste #barra-brasil .list-item{background:#000 !important}body.contraste #menu-icon{border-top:15px double #fff !important;border-bottom:5px solid #fff !important}#barra-brasil .list a:active li,#barra-brasil .list a:focus li,#barra-brasil .list a:hover li{background:#DDD}body.contraste #barra-brasil .list a:active li,body.contraste #barra-brasil .list a:focus li,body.contraste #barra-brasil .list a:hover li{background:#606060 !important}#barra-brasil nav:active ul.list,#barra-brasil nav:focus ul.list,#barra-brasil nav:hover ul.list{height:150px;transition:0.5s}div#wrapper-barra-brasil{overflow:visible}}@media screen and (min-width: 960px){#wrapper-barra-brasil{width:960px}}@media print{#barra-brasil .list{display:none}#barra-brasil .acesso-info .link-barra:after{content:" - Barra GovBr"}}</style><style type="text/css" media="all">div#wrapper-footer-brasil{position:relative;overflow:hidden;margin:0 auto;width:auto;padding:0 20px;max-width:960px}#wrapper-footer-brasil .logo-acesso-footer{float:left;width:107px;background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzU4NSA3NDk3IiBoZWlnaHQ9IjQ5IiB3aWR0aD0iMTA3IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbLmEge2ZvbnQ6IG5vcm1hbCBib2xkIDE2OTNweCBPcGVuIFNhbnMsIHNhbnMtc2VyaWY7fV1dPjwvc3R5bGU+PC9kZWZzPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMTI1IC0xMDM1MCkiPjxjaXJjbGUgY3g9IjQ4NjQiIGN5PSIxNDA5OSIgcj0iMzczOSIgZmlsbD0iI2Y2YTgwMCIvPjxwYXRoIGQ9Ik0xODM1IDE2MTkzLjNsLTM1MyAxMDA1Yy0xMzcgMzg5IDcwIDU5NiA0NTkgNDU5bDEwMDUtMzUzeiIgY2xhc3M9ImZpbDEiIGZpbGw9IiNmNmE4MDAiLz48Y2lyY2xlIHI9Ijc1MCIgY3k9IjEyMjI1IiBjeD0iNDg3NCIgZmlsbD0iIzAwNjkyYyIvPjxwYXRoIGQ9Ik00ODc0IDEzMzUwYy00MTQgMC03NTAgMzM2LTc1MCA3NTB2MTg3N2MwIDQxNCAzMzYgNzUwIDc1MCA3NTBzNzUwLTMzNiA3NTAtNzUwdi0xODc3YzAtNDE0LTMzNi03NTAtNzUwLTc1MHoiIGZpbGw9IiMwMDY5MmMiLz48ZyBmaWxsPSIjZmZmIj48dGV4dCB4PSI4ODczIiB5PSIxMzMyNCI+PHRzcGFuIGNsYXNzPSJhIiB5PSIxMzMyNCI+QWNlc3NvIMOgPC90c3Bhbj48dHNwYW4gY2xhc3M9ImEiIHg9Ijg4NzMiIHk9IjE1NDQwIj5JbmZvcm1hw6fDo288L3RzcGFuPjwvdGV4dD48L2c+PC9nPjwvc3ZnPgo=") center no-repeat;height:49px}#wrapper-footer-brasil .logo-brasil-footer{float:right;width:153px;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJkAAAAwCAMAAAA1kSiuAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAFiUExURQAAAP/////////////////////////dAICUGYa2J////////////////////////////////////////////////////////////////////////////6PBH97PCY2fGMDCEFSIKV6EIv/dAP/dACd2OCuHPil+OyqBPCh6OSuKPyqEPSJkMCyTQyyNQS2gSCZwNS2bRiFfLiRtNCRqMy2dRydzNx9bLCNnMi2YRR1UKS2WRCyQQip8OcnIDyBYKiZyNvfZAiyRQvWGHcbADSBioqy7F/////uoFkaFMEiVNpimFztyLJ21HPaPG3GuLiBQjvyxE3GdJ+nUBvmYGTeRPY24JEekPmGJJd7NCFqXMoKbH9TQDtKTJlipN/mgGKKvF7fFF4GvJ0VymbKGRKmaJ/vHCKODJO2nGdrl8N6WKry8EYp0WGSOuoisza7D2nd7JEpYcrWacEN9stekWsTR4lEu4eYAAABIdFJOUwDzBb3oLXhAcHA7EJJUhJ6wRxpg0NrhI2jHbnOpX0hfUd2Nqf///////////////////////////////////////////////nia+rQAAAnqSURBVFjD7ZnXf9tIDoApkdTuSVTvtjZll8kmci+JHSeiQ5sRrWIpkSNbkuMap9dt//9hBphhkXd/93b3cPNiZkAAHzDAUJlREumIFlP4iBqaloryx3gpocQy/DGhaVoRX1C1UjrHn3JaXEkZOFtWI4WkEhgq6Oj8KQ1PKMxrmppFcRwm0bgCto0oadVUeihrbCpd1bNxnIgV9XiJKEt5pZhHCFfXyzhZiOnVFOq6Ws5I02ytXHHLAbLijK6jv4yh6wn+VCnoMxHEzWq6jhEqbjZO5EouQtEousuUI9lyOo261RmgI+6YGo9EiUxVZ4nBSBZmiaymElnOzaGqn6yaIexMSSWLlSq8htpZMEk4bj4ZocSk0iJWJCtWEjMuBqDC8qRriuAxxFMyS7EUipoaJbJEIYJ2Em5ciZaCy1k0KjSRSWezkixaylPOslmRs2qE/ES1YjGS8JHlI0aGJuKRWo3yDSZdXZAZBikX8nGSl92oTmRKSjMKhWiQTIJmVMPA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") center no-repeat;height:48px}body.contraste #footer-brasil{background:#000 !important}@media screen and (min-width: 960px){#wrapper-footer-brasil{width:960px}}@media print{#wrapper-footer-brasil{border-top:2px solid #dfdfdf}#wrapper-footer-brasil:before{content:"Barra GovBr";color:#606060;font-size:12px;font-family:"Open Sans",Arial,Helvetica,sans-serif}}</style></head>
+<body onselectstart="return true;">
+    <div id="barra-brasil"><div id="wrapper-barra-brasil"><div class="brasil-flag"><a href="http://brasil.gov.br" class="link-barra">Brasil</a></div><span class="acesso-info"><a href="http://brasil.gov.br/barra#acesso-informacao" class="link-barra">Acesso à informação</a></span><nav><ul class="list"><li><a href="#" id="menu-icon"></a></li><li class="list-item first"><a href="http://brasil.gov.br/barra#participe" class="link-barra">Participe</a></li><li class="list-item"><a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil" class="link-barra" id="barra-brasil-orgao">Serviços</a></li><li class="list-item"><a href="http://www.planalto.gov.br/legislacao" class="link-barra">Legislação</a></li><li class="list-item last last-item"><a href="http://brasil.gov.br/barra#orgaos-atuacao-canais" class="link-barra">Canais</a></li></ul></nav></div></div>
+    
+
+    <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
+ 
+   
+
+    <div id="divCentral">
+        <form name="aspnetForm" method="post" action="consultaCompleta.aspx?tipoConteudo=XbSeqxE8pl8%3d" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNDQ1MTE2MTcxZBgCBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WBQUPY3RsMDAkaWJ0QnVzY2FyBSljdGwwMCRnZHZMaW5rc0Rlc3RhcXVlJGN0bDAyJEltYWdlQnV0dG9uMQUpY3RsMDAkZ2R2TGlua3NEZXN0YXF1ZSRjdGwwMyRJbWFnZUJ1dHRvbjEFKWN0bDAwJGdkdkxpbmtzRGVzdGFxdWUkY3RsMDQkSW1hZ2VCdXR0b24xBSljdGwwMCRnZHZMaW5rc0Rlc3RhcXVlJGN0bDA1JEltYWdlQnV0dG9uMQUWY3RsMDAkZ2R2TGlua3NEZXN0YXF1ZQ88KwAMAQgCAWTv32P5al/darLn8iQmcbRE1k4KlQ==">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/PORTAL/WebResource.axd?d=ZWO9axJrMUCOr1izP3UEZRCC9H9dses7etW7JecjiAOQDqMwdG-StzfDPAgcsQ8hxRkl-AMsAJBR-BfkCGB56pQ3gKo1&amp;t=635654390349980240" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){ 
+$('#ctl00_ContentPlaceHolder1_hplImprimirAba').click(function() {
+var numAba = ($('.nftselected').attr('id'));
+var numAbaAtual = numAba.substr(4,2);
+var idAba = '0';
+if (typeof(numAbaAtual.trim()) != 'undefined') { idAba = numAbaAtual; } 
+if (idAba != null) { 
+var url = 'consultaImpressao.aspx?tipoConsulta=completa&aba=' + idAba; 
+window.open(url); 
+} else { 
+    alert('Sistema temporariamente indisponível. Tente novamente mais tarde.'); 
+} 
+});
+});$(document).ready(function(){ 
+$('#ctl00_ContentPlaceHolder1_hplExibirAutorizacao').click(function() {
+window.open('consultaAutorizacaoUso.aspx'); 
+});
+});$(document).ready(function(){ 
+$('#ctl00_ContentPlaceHolder1_hplImprimir').click(function() {
+window.open('consultaImpressao.aspx?tipoConsulta=completa'); 
+});
+});//]]>
+</script>
+
+<script src="/PORTAL/ScriptResource.axd?d=mEdZQL4-NwECxt-JTyttk6L9nZIgV2gXEYVXAtZsi0K6ekMkFlv9Yn_Kj22VMi8DGrNLu0_DpTP9BqO8cJwvdqgjvvPW2azeebt459xHltLpU2IYCjWzfsXnSvCpl58N24rAFBpwmeIv8vlDIdkuJMLyc185M28vUneHfEZinqa8QFoa0&amp;t=5854e822" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=_4eicGuFpUqdgWen_lV3HusxGEZOmOKKDBxJqwShbSOkmNnRzePJCRrfaqi4yAG4omXSLCzZIOXtktjVsEiYo-GKVvPgshIWEGRj0wBWGGBZ17M9NOTmgil71sUoZPjju8MLRc_ZAKcMsgCu1bH4TYQkMzdgF4kGwmOy40aQpegCvFgb0&amp;t=5854e822" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=mT0y51o0LUqDERR1gK1PHgdY4dmheOGIEDsXTAvO15rluXxRmlDpbs2OZ5GzabS8ogN435zUFAzSJzOrMm273LNi9kZaBmfIr0PVpeY4-vWwhlIQYTGcvGdpKZHGke6lc6yRzn6USQ_EFxLZL1yRaRizerg1&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=mNl4X5z8gakgoLeSKYyjidGXzDI8WB_js4c1BOO0SSuYnxrESMP3UuYxSNorl1bu2ullLNpjhtJZfqvuPfq8VIKxbhTYLUh7VwLGXDUL71x3QnCVhGvW8Jj_VC2_LMItPVyX2fC6DCfiCRENC9-saVW3pew1&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=gy1cG5fQPk2O5gMbY0Pn3yHuPzFtfmg8QV1Pogc1KBWIteuUKmKBuBIyfW6KqHWIvgFeCm3oM-z5WZSRNugLOVc55rLnYVeKyHRamgeBETeIpLo0gpVt7LFGQ7bKUNRono7LVxGw777PGlSFHyqC91m3kP41&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=aNMBzIixTOb4x9OTZNL5biKT0bpsWTKFMlit8dMFQJavlF2hvLsk_Wlk0VVmlETfWHY1ZX0PZI0HRrl3Cs8XWmJdvPuGfmYNTUTC_ZUO6a3_BTOOTWwfHEmr5YKwWwIY9Q4muUyNtv1eMDjmNJMtC4OMSCtFzSfY1oTKlV65AYDShHn90&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=hrh3Yb6czhWN6wUcMZcUIeFOLf8grYBT6HRxG1BYQae0SChobBeHW4T_zIJTyIaQOnDjcTFfQhYdP19zBElCxyRv6CmBwEPXAAdjHE2nI6VmTzhLMs638WBFuAYwkLSf8lHbIF1OX750GX0TLea66fbTLEg2XV3OrgeL_2WtW-YygiYH0&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=vz8B9u4YtVYX1pVqKcPnTT5VAHjqfY7XelyFKI4TdQTifTuY9dnz1e811Kfd2J734nTtqNu1JVebhTGlFncJMGmkBtDc3CnuIQD99rtw0doLzeqZwljjDwrsd35OJb4v96jNLff34pUPIDT3edHBA3bRPj_SlcRScFLyjafLvlBejTK-0&amp;t=4c551fe5" type="text/javascript"></script>
+<script src="/PORTAL/ScriptResource.axd?d=u9gFRG_7YktrV4NulEFzs0AbMrx8VSF73ldTY0YL-OuOO1zkEapDJywAv1vyYUGySV1TRiwVILUTmCcRQFqF-cfvgxFpRh9zMy3JMh90gP-KyJUT75SzPtk-LwlXSmNqp5_lXIOKCcldvFCOMY_4HY9xoVWKkN5p6PeL-R8PvJ6xw0xL0&amp;t=4c551fe5" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5C761C5D">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCgL+14GyBQLnzPHfDgKC+5r9AgKv1eaJDQKv1crCCgLKvoxzArbj59AHAp2U6ZsOAtX3jccDAoXYr80GI9zlH1E0Kn1Ngzm1s0LfSKBWO0M=">
+</div>
+            <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager', 'aspnetForm', ['tctl00$upnBuscar',''], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+
+            <div id="tudoSemRodape" class="contemFloat">
+                <div id="cabecalho">
+                    <div id="menuAcessibilidade">
+                        <!--?xml version="1.0" encoding="iso-8859-15"?--><a href="listaSubMenu.aspx?Id=fQsOzDfuAYE=">Conheça a NF-e</a><a href="listaSubMenu.aspx?Id=nIzMon5clGU=">Serviços</a><a href="listaSubMenu.aspx?Id=33ol5hhSYZk=">Legislação</a><a href="listaSubMenu.aspx?Id=tW+YMyk/50s=">Documentos</a><a href="listaSubMenu.aspx?Id=/fwLvLUSmU8=">Downloads</a><a href="https://www1.sped.fazenda.gov.br/scripts/scaef/login/login.asp?URL=/spednfeacesso/arnfe/inicial/default.aspx&amp;Sistema=SPEDNFe%20Portal&amp;URLCert=/scripts/scaef/login/AbreCertificado/default.asp&amp;URLScaef=/scripts/scaef/scaef.dll">Área Restrita</a>
+                    </div>
+                    
+                    <div id="divTransparente" onclick="javascript:location.href = 'principal.aspx'">
+                    </div>
+                    <div id="imgHome">
+                        <a href="principal.aspx">
+                            <img id="ibtHome" src="imagens/home_icon_Off.png" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" alt="Link para a página inicial do Portal da NF-e">
+                        </a>
+                    </div>
+                    <div id="menu">
+                        <!--?xml version="1.0" encoding="iso-8859-15"?--><ul class="abasMenu" xmlns:chave="http://exslt.org/chaveacesso"><li class="itemMenuPrincipal"><a href="listaSubMenu.aspx?Id=nIzMon5clGU=">Serviços</a><ul class="dropdown"><li><a href="consulta.aspx?tipoConsulta=resumo&amp;tipoConteudo=d09fwabTnLk=">Consultar Resumo da NF-e</a></li><li><a href="consulta.aspx?tipoConsulta=completa&amp;tipoConteudo=XbSeqxE8pl8=">Consultar NF-e Completa</a></li><li><a href="consulta.aspx?tipoConsulta=inutilizacao&amp;tipoConteudo=YG1QjUXR4PY=">Consultar Inutilização</a></li><li><a href="solicitaCertificado.aspx?tipoConteudo=tWGiMa+ohzI=">Consultar Duplicidade AN</a></li><li><a href="disponibilidade.aspx?versao=0.00&amp;tipoConteudo=Skeuqr8PQBY=">Consultar Disponibilidade</a></li><li><a href="https://www.nfe.fazenda.gov.br/PORTAL/manifestacaoDestinatario.aspx?tipoConteudo=z+xSrb/veGA=">Manifestação Destinatário</a></li><li><a href="webServices.aspx?tipoConteudo=Wak0FwB7dKs=">Relação de Serviços Web</a></li><li><a href="http://www.nfe.fazenda.gov.br/AgendamentoSVC/?tipoConteudo=Ue3XDkLSO2A=">Agendamento SVC-AN</a></li><li><a href="https://www.nfe.fazenda.gov.br/PORTAL/consultaEPECConciliacao.aspx?tipoConteudo=QTlVUO4tycw=">Consultar EPEC Pendente de Conciliação</a></li></ul></li><li class="itemMenuPrincipal"><a href="listaSubMenu.aspx?Id=33ol5hhSYZk=">Legislação</a><ul class="dropdown"><li><a href="listaConteudo.aspx?tipoConteudo=mCK/KoCqru0=">Ajustes SINIEF</a></li><li><a href="listaConteudo.aspx?tipoConteudo=Y0nErnoZpsg=">Atos COTEPE</a></li><li><a href="listaConteudo.aspx?tipoConteudo=0xlG1bdBass=">Convênios</a></li><li><a href="listaConteudo.aspx?tipoConteudo=IV+EmHlFEfQ=">Protocolos</a></li></ul></li><li class="itemMenuPrincipal"><a href="listaSubMenu.aspx?Id=tW+YMyk/50s=">Documentos</a><ul class="dropdown"><li><a href="listaConteudo.aspx?tipoConteudo=33ol5hhSYZk=">Manuais </a></li><li><a href="listaConteudo.aspx?tipoConteudo=/fwLvLUSmU8=">Esquemas XML</a></li><li><a href="listaConteudo.aspx?tipoConteudo=tW+YMyk/50s=">Notas Técnicas</a></li><li><a href="listaConteudo.aspx?tipoConteudo=Iy/5Qol1YbE=">Diversos</a></li></ul></li><li class="itemMenuPrincipal"><a href="listaSubMenu.aspx?Id=/fwLvLUSmU8=">Downloads</a><ul class="dropdown"><li><a href="download.aspx?tipoConteudo=s/eYlu5e+Y4=">Visualizador de DF-e</a></li><li><a href="download.aspx?tipoConteudo=YkoQKwGaI70=">Assinador</a></li><li><a href="listaConteudo.aspx?tipoConteudo=Jd9VnWmU9wY=">Emissor de NF-e</a></li><li><a href="listaConteudo.aspx?tipoConteudo=AxaPNP1BtFk=">Manifestador de NF-e</a></li></ul></li></ul>
+                    </div>
+                </div>
+                <div id="barraDireita">
+                    <div id="estatisticas">
+                        <h1>Estatísticas da NF-e</h1>
+                        <span id="ctl00_lblTituloNfeAut">NF-e Autorizadas</span>
+                        <br>
+                        <div class="valorEstatistica">
+                            <span id="ctl00_lblTotalNfeAut">13,426 bilhões</span>
+                        </div>
+                        <span id="ctl00_lblTituloEmissores">Número de Emissores</span>
+                        <br>
+                        <div class="valorEstatistica">
+                            <span id="ctl00_lblTotalEmissores">1,224 milhões</span>
+                        </div>
+                        <a id="ctl00_hlkInfoEstatisticas" href="infoEstatisticas.aspx">... saiba mais</a>
+                    </div>
+                    <div id="busca">
+                        <div id="ctl00_upnBuscar">
+	
+                                <input name="ctl00$txtPalavraChave" type="text" id="ctl00_txtPalavraChave" class="campoTextoBusca" autocomplete="off">
+                                
+                                <input type="image" name="ctl00$ibtBuscar" id="ctl00_ibtBuscar" class="botaoBuscar" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" src="imagens/botao_buscar_Off_completo.png" style="border-width:0px;">
+                                
+                            
+</div>
+                    </div>
+                    <div id="linkAreaRestrita">
+                        <p>
+                            <a id="ctl00_hlkAreaRestrita" href="https://www1.sped.fazenda.gov.br/scripts/scaef/login/login.asp?URL=/spednfeacesso/arnfe/inicial/default.aspx&amp;Sistema=SPEDNFe%20Portal&amp;URLCert=/scripts/scaef/login/AbreCertificado/default.asp&amp;URLScaef=/scripts/scaef/scaef.dll">Área Restrita</a>
+                        </p>
+                    </div>
+                    <div id="linkCentralNFe">
+                        <p>
+                            <span id="ctl00_lbl0800">Central NF-e 0800 9782338</span>
+                        </p>
+                    </div>
+                    <div id="linkFAQ">
+                        <p>
+                            <a id="ctl00_hlkFAQ" href="perguntasFrequentes.aspx?tipoConteudo=47FIo72z99s=">Perguntas Frequentes</a>
+                        </p>
+                    </div>
+                    <div id="linkSefaz">
+                        <p>
+                            <span id="ctl00_lblPortaisSefaz">Portais e Secretarias</span>
+                        </p>
+                    </div>
+                    <div id="linkBanners">
+                        <p>
+                            <span id="ctl00_lblPortaisEstaduais">Portais Estaduais da NF-e</span>
+                            <br>
+                            <!--?xml version="1.0" encoding="iso-8859-15"?--><select onchange="javascript: window.open(this.value)"><option value="">Selecione</option><option value="http://www.sefaz.ac.gov.br/sefaz2010/">Acre</option><option value="http://www.sefaz.al.gov.br/nfe/">Alagoas</option><option value="http://sistemas.sefaz.am.gov.br/nfeweb/portal/index.do">Amazonas</option><option value="http://www.sefaz.ba.gov.br/scripts/default/nfiscal.asp">Bahia</option><option value="http://nfe.sefaz.ce.gov.br/">Ceará</option><option value="http://dec.fazenda.df.gov.br/">Distrito Federal</option><option value="http://internet.sefaz.es.gov.br/informacoes/nfe/">Espirito Santo</option><option value="http://nfe.sefaz.go.gov.br/">Goiás</option><option value="http://www.sefaz.ma.gov.br/NFE/">Maranhão</option><option value="http://www.sefaz.mt.gov.br/portal/nfe/">Mato Grosso</option><option value="http://www1.nfe.ms.gov.br/">Mato Grosso do Sul</option><option value="http://portalnfe.fazenda.mg.gov.br/">Minas Gerais</option><option value="http://www.sefa.pa.gov.br/site/">Pará</option><option value="http://www.receita.pb.gov.br/portalnf-e.php">Paraíba</option><option value="http://www.sped.fazenda.pr.gov.br/">Paraná</option><option value="https://www.sefaz.pe.gov.br/Servicos/Nota-Fiscal-Eletronica/Paginas/Apresentacao.aspx">Pernambuco</option><option value="http://www.sefaz.pi.gov.br/conteudo_internet.php?p=nfe_home">Piauí</option><option value="http://www.fazenda.rj.gov.br/sefaz/faces/webcenter/faces/owResource.jspx?z=oracle.webcenter.doclib%21UCMServer%21UCMServer%2523dDocName%253A100998">Rio de Janeiro</option><option value="http://www.set.rn.gov.br/contentProducao/aplicacao/set_v2/nfe/gerados/inicio.asp">Rio Grande do Norte</option><option value="http://www.sefaz.rs.gov.br/SEF_ROOT/inf/SEF-NFE.htm">Rio Grande do Sul</option><option value="http://www.portal.sefin.ro.gov.br/site/conteudo.action?conteudo=234">Rondônia</option><option value="http://nfe.sef.sc.gov.br/">Santa Catarina</option><option value="http://www.fazenda.sp.gov.br/nfe/">São Paulo</option><option value="http://nfe.sefaz.se.gov.br/">Sergipe</option><option value="http://www.sefaz.to.gov.br/nfe/consultanfe.php">Tocantins</option></select>
+                        </p>
+                        <p>
+                            <span id="ctl00_lblLinkSefaz">Secretarias de Fazenda</span>
+                            <br>
+                            <!--?xml version="1.0" encoding="iso-8859-15"?--><select onchange="javascript: window.open(this.value)"><option value="">Selecione</option><option value="http://www.sefaz.ac.gov.br/">Acre</option><option value="http://www.sefaz.al.gov.br/">Alagoas</option><option value="http://www.sefaz.ap.gov.br/">Amapá</option><option value="http://www.sefaz.am.gov.br/">Amazonas</option><option value="http://www.sefaz.ba.gov.br/">Bahia</option><option value="http://www.sefaz.ce.gov.br/">Ceará</option><option value="http://www.fazenda.df.gov.br/">Distrito Federal</option><option value="http://www.sefaz.es.gov.br/">Espirito Santo</option><option value="http://www.sefaz.go.gov.br/">Goiás</option><option value="http://www.sefaz.ma.gov.br/">Maranhão</option><option value="http://www.sefaz.mt.gov.br/">Mato Grosso</option><option value="http://www.sefaz.ms.gov.br/">Mato Grosso do Sul</option><option value="http://www.fazenda.mg.gov.br/">Minas Gerais</option><option value="http://www.sefa.pa.gov.br/">Pará</option><option value="http://www.sefin.pb.gov.br/">Paraíba</option><option value="http://www.fazenda.pr.gov.br/">Paraná</option><option value="https://www.sefaz.pe.gov.br/SitePages/Home.aspx">Pernambuco</option><option value="http://www.sefaz.pi.gov.br/">Piauí</option><option value="http://www.fazenda.rj.gov.br">Rio de Janeiro</option><option value="http://www.set.rn.gov.br/">Rio Grande do Norte</option><option value="http://www.sefaz.rs.gov.br/">Rio Grande do Sul</option><option value="http://www.portal.sefin.ro.gov.br/">Rondônia</option><option value="http://www.sefaz.rr.gov.br/">Roraima</option><option value="http://www.sef.sc.gov.br/">Santa Catarina</option><option value="http://www.fazenda.sp.gov.br/">São Paulo</option><option value="http://www.sefaz.se.gov.br/">Sergipe</option><option value="http://www.sefaz.to.gov.br/">Tocantins</option></select>
+                        </p>
+                        
+                        
+                        <img id="linhaDivisoria" src="imagens/linha_divisoria.png" alt="Linha divisória">
+                        <div>
+	<table cellspacing="0" rules="all" border="0" id="ctl00_gdvLinksDestaque" style="border-width:0px;border-collapse:collapse;">
+		<tbody><tr>
+			<td>
+                                        <input type="image" name="ctl00$gdvLinksDestaque$ctl02$ImageButton1" id="ctl00_gdvLinksDestaque_ctl02_ImageButton1" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" title="Manifesto Eletrônico de Documentos Fiscais" src="imagens/banner_mdfe_Off.png" alt="Manifesto Eletrônico de Documentos Fiscais" onclick="aspnetForm.target ='_blank';" style="border-width:0px;">
+                                    </td>
+		</tr><tr>
+			<td>
+                                        <input type="image" name="ctl00$gdvLinksDestaque$ctl03$ImageButton1" id="ctl00_gdvLinksDestaque_ctl03_ImageButton1" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" title="Conhecimento de Transporte Eletrônico" src="imagens/banners_Visite_CTe_Off.png" alt="Conhecimento de Transporte Eletrônico" onclick="aspnetForm.target ='_blank';" style="border-width:0px;">
+                                    </td>
+		</tr><tr>
+			<td>
+                                        <input type="image" name="ctl00$gdvLinksDestaque$ctl04$ImageButton1" id="ctl00_gdvLinksDestaque_ctl04_ImageButton1" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" title="Sistema Público de Escrituração Fiscal" src="imagens/banners_Visite_Sped_Off.png" alt="Sistema Público de Escrituração Fiscal" onclick="aspnetForm.target ='_blank';" style="border-width:0px;">
+                                    </td>
+		</tr><tr>
+			<td>
+                                        <input type="image" name="ctl00$gdvLinksDestaque$ctl05$ImageButton1" id="ctl00_gdvLinksDestaque_ctl05_ImageButton1" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" title="Superintendência da Zona Franca de Manaus" src="imagens/banners_manaus_Off.png" alt="Superintendência da Zona Franca de Manaus" onclick="aspnetForm.target ='_blank';" style="border-width:0px;">
+                                    </td>
+		</tr>
+	</tbody></table>
+</div>
+                        
+                    </div>
+                </div>
+                <div id="conteudo">
+                    <div id="localizacao">
+                        <div id="voceEstaAqui">
+                            Você está aqui:
+                        </div>
+                        <div id="caminho">
+                            <a id="ctl00_hlkPaginaPrincipao" href="principal.aspx">Página Principal</a>
+                            <!--?xml version="1.0" encoding="iso-8859-15"?-->
+    &gt;
+    <a href="listaSubMenu.aspx?Id=nIzMon5clGU=">Serviços</a>
+      &gt;
+      <span class="fonteCinza">Consultar NF-e Completa</span>
+                            
+                            
+                        </div>
+                    </div>
+                    <div id="zoomAcessibilidade">
+                        <img src="imagens/acessibilidade_reduzir_Off.png" id="imgZoomMenos" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" alt="Link que permite reduzir o tamanho da fonte">
+                        <img src="imagens/acessibilidade_ampliar_Off.png" id="imgZoomMais" onmouseover="javascript: trocarImagem(this)" onmouseout="javascript: trocarImagem(this)" alt="Link que permite aumentar o tamanho da fonte">
+                    </div>
+                    <div id="conteudoDinamico">
+                        
+    
+    <div class="divTituloPrincipal">
+        <span id="ctl00_ContentPlaceHolder1_lblTituloPrincipal" class="tituloPrincipal">Consultar NF-e Completa</span>
+    </div>
+    <div class="indentacaoConteudo">
+        <input type="submit" name="ctl00$ContentPlaceHolder1$btnVoltar" value="Nova Consulta" id="ctl00_ContentPlaceHolder1_btnVoltar" class="botao">
+    </div>
+    
+    <div class="indentacaoConteudo">
+        <br>
+         <link rel="stylesheet" type="text/css" href="css/xslt.css"><script language="javascript" src="Scripts/jquery-1.2.6.pack.js?rand=2598439"></script><script language="javascript" src="Scripts/jquery-1.2.6.min.js?rand=896317"></script><script language="javascript" src="Scripts/nfe-vis.js?rand=17945575"></script><div class="GeralXslt"><h1></h1><fieldset><legend>Dados Gerais</legend><table class="box"><tbody><tr><td><label>Chave de Acesso</label><span>3515 0800 7765 7400 0741 5500 3010 6117 3118 6356 2893</span></td><td class="fixo-nro-serie"><label>Número</label><span>10611731</span></td><td class="fixo-versao-xml"><label>Versão XML</label><span>3.10</span></td></tr></tbody></table></fieldset></div><br><ul id="botoes_nft"><li class="nftselected" id="tab_0" onclick="mostraAba(0)"><b>
+              NFe
+            </b></li><li id="tab_1" onclick="mostraAba(1)"><b>Emitente</b></li><li id="tab_2" onclick="mostraAba(2)"><b>Destinatário</b></li><li id="tab_3" onclick="mostraAba(3)"><b>Produtos&nbsp;e&nbsp;Serviços</b></li><li id="tab_4" onclick="mostraAba(4)"><b>Totais</b></li><li id="tab_5" onclick="mostraAba(5)"><b>Transporte</b></li><li id="tab_6" onclick="mostraAba(6)"><b>Cobrança</b></li><li id="tab_7" onclick="mostraAba(7)"><b>Informações&nbsp;Adicionais</b></li></ul><div class="aba_container" style="clear:left;"><div id="aba_nft_0" class="nft" style="display:block; "><div id="NFe" class="GeralXslt"><fieldset><legend class="titulo-aba">Dados da NF-e</legend><table class="box"><tbody><tr><td><label>Modelo</label><span>55</span></td><td><label>Série</label><span>3</span></td><td><label>Número</label><span>10611731</span></td><td><label>Data de Emissão</label><span>21/08/2015 16:31:47-03:00</span></td><td><label>
+                    Data/Hora de Saída ou da Entrada
+                  </label><span>21/08/2015 16:31:47-03:00</span></td><td><label>Valor&nbsp;Total&nbsp;da&nbsp;Nota&nbsp;Fiscal&nbsp;&nbsp;</label><span>47,90</span></td></tr></tbody></table></fieldset><fieldset><legend>Emitente</legend><table class="box"><tbody><tr><td class="col-5"><label>CNPJ</label><span>00.776.574/0007-41</span></td><td class="col-2"><label>Nome / Razão Social</label><span>B2W Companhia Digital</span></td><td class="col-5"><label>Inscrição Estadual</label><span>373117480111</span></td><td class="col-10"><label>UF</label><span>SP</span></td></tr></tbody></table></fieldset><fieldset><legend>Destinatário</legend><table class="box"><tbody><tr><td class="col-5"><label>CPF</label><span>104.241.327-45</span></td><td class="col-2"><label>Nome / Razão Social</label><span>Guilherme Bazilio</span></td><td class="col-5"><label>Inscrição Estadual</label><span></span></td><td class="col-10"><label>UF</label><span>SP</span></td></tr><tr><td class="col-5"><label>Destino da operação</label><span>
+                      1 - Operação Interna
+                    </span></td><td class="col-2"><label>Consumidor final</label><span>
+                      1 - Consumidor final
+                    </span></td><td colspan="2" class="col-3"><label>Presença do Comprador</label><span>
+                      2 - Operação pela internet
+                    </span></td></tr></tbody></table></fieldset><fieldset><legend>Emissão</legend><table class="box"><tbody><tr><td><label>Processo</label><span>
+                      0 - com aplicativo do Contribuinte
+                    </span></td><td><label>Versão do Processo</label><span>ELDOC</span></td><td><label>
+                Tipo de Emissão</label><span>1 - Normal</span></td><td><label>Finalidade</label><span>
+                      1 - Normal
+                    </span></td></tr><tr><td><label>Natureza da Operação</label><span>Venda de mercadoria adquir. de terceiros</span></td><td><label>Tipo da Operação</label><span>
+                      1 - Saída
+                    </span></td><td><label>Forma de Pagamento</label><span>
+                      0 - À vista
+                    </span></td><td><label><i>Digest</i> Value da NF-e
+              </label><span>p8wR/Xp9pknDrm0dUyZb7Jjt9es=</span></td></tr></tbody></table></fieldset><fieldset><legend>
+          Situação Atual:
+
+          AUTORIZADA
+
+          (Ambiente de autorização:
+           produção)
+        </legend><table class="box"><tbody><tr><td><label>Eventos da NF-e</label></td><td><label>Protocolo</label></td><td><label>Data Autorização</label></td><td><label>Data Inclusão AN</label></td></tr><tr><td><span>
+                    Autorização de Uso
+                  </span></td><td><span>135150519291713<input type="hidden" id="nProt" value="135150519291713"></span></td><td><span>21/08/2015 
+        às
+      16:32:00-03:00</span></td><td width="25%"><span class="linha">21/08/2015
+        às
+      16:35:27</span></td></tr><tr><td><span>
+                      CT-e Autorizado (Órgão Autor: SP)
+                    </span></td><td><span>891150579251847</span></td><td><span>22/08/2015 
+        às
+      09:05:08-03:00</span></td><td width="25%"><span class="linha">22/08/2015
+        às
+      09:05:08</span></td></tr></tbody></table></fieldset></div></div><div id="aba_nft_1" class="nft"><div id="Emitente" class="GeralXslt"><fieldset><legend class="titulo-aba">Dados do Emitente</legend><table class="box"><tbody><tr class="col-2"><td><label>Nome / Razão Social</label><span>B2W Companhia Digital</span></td><td><label>Nome Fantasia</label><span></span></td></tr><tr><td><label>CNPJ</label><span>00.776.574/0007-41</span></td><td><label>Endereço</label><span>Estrada dos Alpes, 555,&nbsp;
+                S/N&nbsp;
+                </span></td></tr><tr><td><label>Bairro / Distrito</label><span>Itaqui</span></td><td><label>CEP</label><span>06696-150</span></td></tr><tr><td><label>Município</label><span>3522505
+                -
+                ITAPEVI</span></td><td><label>Telefone</label><span></span></td></tr><tr><td><label>UF</label><span>SP</span></td><td><label>País</label><span></span></td></tr><tr><td><label>Inscrição Estadual</label><span>373117480111</span></td><td><label>Inscrição Estadual do Substituto Tributário</label><span></span></td></tr><tr><td><label>Inscrição Municipal</label><span></span></td><td><label>Município da Ocorrência do Fato Gerador do ICMS</label><span>3522505</span></td></tr><tr><td><label>CNAE Fiscal</label><span></span></td><td><label>Código de Regime Tributário</label><span>
+                      3 - Regime Normal
+                    </span></td></tr></tbody></table></fieldset></div></div><div id="aba_nft_2" class="nft"><div id="DestRem" op="1" class="GeralXslt"><fieldset><legend class="titulo-aba">
+          Dados do Destinatário</legend><table class="box"><tbody><tr class="col-2"><td colspan="3"><label>Nome / Razão Social</label><span>Guilherme Bazilio</span></td></tr><tr class="col-2"><td colspan="2"><label>CPF</label><span>104.241.327-45</span></td><td><label>Endereço</label><span>AVENIDA Visconde de Indaiatuba,&nbsp;
+                1277&nbsp;
+                GAS Tecnologia</span></td></tr><tr><td colspan="2"><label>Bairro / Distrito</label><span>Vila Vitoria I</span></td><td><label>CEP</label><span>13338-010</span></td></tr><tr><td colspan="2"><label>Município</label><span>3520509
+                  -
+                INDAIATUBA</span></td><td><label>Telefone</label><span>(24)8823-8656</span></td></tr><tr><td colspan="2"><label>UF</label><span>SP</span></td><td><label>País</label><span></span></td></tr><tr><td style="width:25%"><label>Indicador IE</label><span>
+                    09 - Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS
+                  </span></td><td style="width:25%"><label>Inscrição Estadual</label><span></span></td><td style="width:50%"><label>Inscrição SUFRAMA</label><span></span></td></tr><tr><td><label>IM</label><span></span></td><td colspan="2"><label>E-mail</label><span></span></td></tr></tbody></table></fieldset></div></div><div id="aba_nft_4" class="nft"><div id="Totais" class="GeralXslt"><fieldset><legend class="titulo-aba">Totais</legend><fieldset><legend>
+            ICMS
+          </legend><table class="box"><tbody><tr class="col-4"><td><label>Base de Cálculo ICMS</label><span>0,00</span></td><td><label>Valor do ICMS</label><span>0,00</span></td><td><label>Valor do ICMS Desonerado</label><span>0,00</span></td><td><label>Base de Cálculo ICMS ST</label><span>0,00</span></td></tr><tr><td><label>Valor ICMS Substituição</label><span>0,00</span></td><td><label>
+                  Valor Total dos Produtos
+                </label><span>47,90</span></td><td><label>Valor do Frete</label><span>5,75</span></td><td><label>Valor do Seguro</label><span>0,00</span></td></tr><tr><td><label>Outras Despesas Acessórias</label><span>0,00</span></td><td><label>Valor Total do IPI</label><span>0,00</span></td><td><label>Valor Total da NFe</label><span>47,90</span></td><td><label>Valor Total dos Descontos</label><span>5,75</span></td></tr><tr><td><label>Valor Total do II</label><span>0,00</span></td><td><label>Valor do PIS</label><span>0,00</span></td><td><label>Valor da COFINS</label><span>0,00</span></td><td><label>Valor Aproximado dos Tributos</label><span>0,00</span></td></tr><tr><td><label>Valor Total ICMS FCP</label><span></span></td><td><label>Valor Total ICMS Interestadual UF Destino</label><span></span></td><td><label>Valor Total ICMS Interestadual UF Rem.</label><span></span></td></tr></tbody></table></fieldset></fieldset></div></div><div id="aba_nft_5" class="nft"><div id="Transporte" class="GeralXslt"><fieldset><legend class="titulo-aba">Dados do Transporte</legend><table class="box"><tbody><tr><td><label>Modalidade do Frete</label><span>
+                    1 - Por Conta do Destintário
+                  </span></td></tr></tbody></table></fieldset><fieldset><legend class="titulo-aba-interna">Volumes</legend><table class="box"><tbody><tr class="col-1"><td colspan="3" style="border-bottom:solid 1px #CCC"><label>
+                    Volume 1</label></td></tr><tr class="col-3"><td><label>Quantidade</label><span>1</span></td><td><label>Espécie</label><span></span></td><td><label>Marca dos Volumes</label><span></span></td></tr><tr><td><label>Numeração</label><span></span></td><td><label>Peso Líquido</label><span>0,965</span></td><td><label>Peso Bruto</label><span>0,965</span></td></tr><tr></tr></tbody></table><br></fieldset></div></div><div id="aba_nft_6" class="nft"><div id="Cobranca" class="GeralXslt"><fieldset></fieldset></div></div><div id="aba_nft_7" class="nft"><div id="Inf" class="GeralXslt"><fieldset><legend class="titulo-aba">
+          Informações Adicionais
+        </legend><div id="Versao">
+          XSLT:
+    v3.1.3a
+  </div><table class="box"><tbody><tr><td colspan="3"><label>Formato de Impressão DANFE</label><span>1 - DANFE normal, retrato</span></td></tr></tbody></table><fieldset><legend>Informações Complementares de Interesse do Contribuinte</legend><table class="box"><tbody><tr><td><label>Descrição</label><span><div style="word-wrap: break-word">Nf.Id: 113343664 -Aliq. ICMS reduzida nas vendas de produtos fab. conf Lei 8248/91. Saidas internas e interestaduais a consumidor final, conf Art. 155, 2o, VII, &amp;quot;b&amp;quot; da CF e (Art. 14, IX, do RICMS/RJ)(Art. 25, Anexo 42-E do Decreto 14876/91 - PE)(Decreto 43080/2002 ANEXO IV PARTE 9 RICMS MG)  N. Pedido: 03-473608949 N. Entrega: 390948251.</div></span></td></tr></tbody></table></fieldset><fieldset><legend class="titulo-aba-interna">Observações do Contribuinte</legend><table class="box"><tbody><tr><td class="fixo-info-adic-proc-ref"><label>Campo</label></td><td><label>Texto</label></td></tr><tr class="col-2"><td><span>SiglaERP</span></td><td><span>ORACLE</span></td></tr><tr class="col-2"><td><span>Logo</span></td><td><span>SUBA</span></td></tr><tr class="col-2"><td><span>NomedaMarca</span></td><td><span>Submarino.com</span></td></tr></tbody></table></fieldset></fieldset></div></div><div id="aba_nft_9" class="nft"></div><div id="aba_nft_3" class="nft"><div id="Prod" class="GeralXslt"><fieldset><legend class="titulo-aba">Dados dos Produtos e Serviços</legend><div><table class="prod-serv-header box"><tbody><tr><td class="fixo-prod-serv-numero"><label>Num.</label></td><td class="fixo-prod-serv-descricao"><label>Descrição</label></td><td class="fixo-prod-serv-qtd"><label>Qtd.</label></td><td class="fixo-prod-serv-uc"><label>Unidade Comercial</label></td><td class="fixo-prod-serv-vb"><label>Valor(R$)</label></td></tr></tbody></table><table class="toggle box"><tbody><tr><td class="fixo-prod-serv-numero"><span>1</span></td><td class="fixo-prod-serv-descricao"><span>Livro - 7 Habitos das Pessoas Altamente Eficazes</span></td><td class="fixo-prod-serv-qtd"><span>1,0000</span></td><td class="fixo-prod-serv-uc"><span>PC</span></td><td class="fixo-prod-serv-vb"><span>26,90</span></td></tr></tbody></table><table class="toggable box" style="background-color: rgb(236, 236, 236); display: none;"><tbody><tr><td><table class="box"><tbody><tr class="col-4"><td colspan="4"><label>Código do Produto</label><span>5463048</span></td><td colspan="2"><label>Código NCM</label><span>49019900</span></td><td colspan="2"><label>Código CEST</label><span></span></td><td colspan="4"></td></tr><tr><td colspan="4"><label>Código EX da TIPI</label><span></span></td><td colspan="4"><label>CFOP</label><span>5102</span></td><td colspan="4"><label>Outras Despesas Acessórias</label><span></span></td></tr><tr><td colspan="4"><label>Valor do Desconto</label><span>3,23</span></td><td colspan="4"><label>Valor Total do Frete</label><span>3,23</span></td><td colspan="4"><label>Valor do Seguro</label><span></span></td></tr></tbody></table><br><table class="box"><tbody><tr class="col-12"><td colspan="12"><label>
+                          Indicador de Composição do Valor Total da NF-e
+                        </label><span>
+                              1 - O valor do item (vProd) compõe o valor total da NF-e (vProd)
+                            </span></td></tr><tr class="col-3"><td colspan="4"><label>Código EAN Comercial</label><span>9788576840626</span></td><td colspan="4"><label>Unidade Comercial</label><span>PC</span></td><td colspan="4"><label>Quantidade Comercial</label><span>1,0000</span></td></tr><tr><td colspan="4"><label>Código EAN Tributável</label><span>9788576840626</span></td><td colspan="4"><label>Unidade Tributável</label><span>PC</span></td><td colspan="4"><label>Quantidade Tributável</label><span>1,0000</span></td></tr><tr><td colspan="4"><label>Valor unitário de comercialização</label><span>26,9000000000</span></td><td colspan="4"><label>Valor unitário de tributação</label><span>26,9000000000</span></td><td colspan="4"></td></tr><tr><td colspan="4"><label>Número do pedido de compra</label><span></span></td><td colspan="4"><label>Item do pedido de compra</label><span></span></td><td><label>Valor Aproximado dos Tributos</label><span>0,00</span></td></tr><tr><td colspan="4"><label>Número da FCI</label><span></span></td></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend>ICMS Normal e ST</legend><table class="box"><tbody><tr class="col-2"><td><label>Origem da Mercadoria</label><span>0 - Nacional</span></td><td colspan="2"><label>Tributação do ICMS</label><span>40 - Isenta</span></td></tr><tr class="col-3"><td><label>Valor ICMS desoneração</label><span></span></td></tr></tbody></table></fieldset></td></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="toggle">PIS</legend><div class="toggable" style="display: none;"><table class="box"><tbody><tr class="col-3"><td colspan="3"><label>CST</label><span>06 - Operação Tributável (alíquota zero)</span></td></tr></tbody></table></div></fieldset></td></tr><tr></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="toggle">COFINS</legend><div class="toggable" style="display: none;"><table class="box"><tbody><tr class="col-3"><td colspan="3"><label>CST</label><span>06 - Operação Tributável (alíquota zero)</span></td></tr></tbody></table></div></fieldset></td></tr><tr></tr><tr></tr><tr></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="titulo-aba-interna">Informações adicionais do produto</legend><table class="box"><tbody><tr><td><label>Descrição</label><span>Desconto Incondicional Concedido: R$ 3.23</span></td></tr></tbody></table></fieldset></td></tr></tbody></table></td></tr></tbody></table><table class="toggle box"><tbody><tr class="highlighted"><td class="fixo-prod-serv-numero"><span>2</span></td><td class="fixo-prod-serv-descricao"><span>Livro - Vendendo o Invisivel</span></td><td class="fixo-prod-serv-qtd"><span>1,0000</span></td><td class="fixo-prod-serv-uc"><span>PC</span></td><td class="fixo-prod-serv-vb"><span>21,00</span></td></tr></tbody></table><table class="toggable box" style="background-color: rgb(236, 236, 236); display: none;"><tbody><tr><td><table class="box"><tbody><tr class="col-4"><td colspan="4"><label>Código do Produto</label><span>6820185</span></td><td colspan="2"><label>Código NCM</label><span>49019900</span></td><td colspan="2"><label>Código CEST</label><span></span></td><td colspan="4"></td></tr><tr><td colspan="4"><label>Código EX da TIPI</label><span></span></td><td colspan="4"><label>CFOP</label><span>5102</span></td><td colspan="4"><label>Outras Despesas Acessórias</label><span></span></td></tr><tr><td colspan="4"><label>Valor do Desconto</label><span>2,52</span></td><td colspan="4"><label>Valor Total do Frete</label><span>2,52</span></td><td colspan="4"><label>Valor do Seguro</label><span></span></td></tr></tbody></table><br><table class="box"><tbody><tr class="col-12"><td colspan="12"><label>
+                          Indicador de Composição do Valor Total da NF-e
+                        </label><span>
+                              1 - O valor do item (vProd) compõe o valor total da NF-e (vProd)
+                            </span></td></tr><tr class="col-3"><td colspan="4"><label>Código EAN Comercial</label><span>9788576842255</span></td><td colspan="4"><label>Unidade Comercial</label><span>PC</span></td><td colspan="4"><label>Quantidade Comercial</label><span>1,0000</span></td></tr><tr><td colspan="4"><label>Código EAN Tributável</label><span>9788576842255</span></td><td colspan="4"><label>Unidade Tributável</label><span>PC</span></td><td colspan="4"><label>Quantidade Tributável</label><span>1,0000</span></td></tr><tr><td colspan="4"><label>Valor unitário de comercialização</label><span>21,0000000000</span></td><td colspan="4"><label>Valor unitário de tributação</label><span>21,0000000000</span></td><td colspan="4"></td></tr><tr><td colspan="4"><label>Número do pedido de compra</label><span></span></td><td colspan="4"><label>Item do pedido de compra</label><span></span></td><td><label>Valor Aproximado dos Tributos</label><span>0,00</span></td></tr><tr><td colspan="4"><label>Número da FCI</label><span></span></td></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend>ICMS Normal e ST</legend><table class="box"><tbody><tr class="col-2"><td><label>Origem da Mercadoria</label><span>0 - Nacional</span></td><td colspan="2"><label>Tributação do ICMS</label><span>40 - Isenta</span></td></tr><tr class="col-3"><td><label>Valor ICMS desoneração</label><span></span></td></tr></tbody></table></fieldset></td></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="toggle">PIS</legend><div class="toggable" style="display: none;"><table class="box"><tbody><tr class="col-3"><td colspan="3"><label>CST</label><span>06 - Operação Tributável (alíquota zero)</span></td></tr></tbody></table></div></fieldset></td></tr><tr></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="toggle">COFINS</legend><div class="toggable" style="display: none;"><table class="box"><tbody><tr class="col-3"><td colspan="3"><label>CST</label><span>06 - Operação Tributável (alíquota zero)</span></td></tr></tbody></table></div></fieldset></td></tr><tr></tr><tr></tr><tr></tr><tr><td colspan="12"><fieldset class="fieldset-internal"><legend class="titulo-aba-interna">Informações adicionais do produto</legend><table class="box"><tbody><tr><td><label>Descrição</label><span>Desconto Incondicional Concedido: R$ 2.52</span></td></tr></tbody></table></fieldset></td></tr></tbody></table></td></tr></tbody></table></div></fieldset></div></div><div id="aba_nft_10" class="nft"></div></div>
+        <div id="ctl00_ContentPlaceHolder1_divBotoesConsulta" class="divLarguraMaxima">
+            <div class="divAlinhadoEsquerda">
+                <a id="ctl00_ContentPlaceHolder1_hplExibirAutorizacao" class="botao">Exibir Autorização de Uso</a>
+                <br>
+                <br>
+                <input type="submit" name="ctl00$ContentPlaceHolder1$btnDownload" value="Download do documento*" onclick="return confirm('Para fazer o download, é necessário possuir um certificado de cliente. \n Clique em Ok para iniciar o download.');" id="ctl00_ContentPlaceHolder1_btnDownload" class="botao">
+                <br>
+                &nbsp;<span class="fonte10">*Requer certificado digital.</span>
+            </div>
+            <div id="ctl00_ContentPlaceHolder1_pnlImprimir" class="divImprimirConsulta">
+	
+                <a id="ctl00_ContentPlaceHolder1_hplImprimirAba" title="Preparar aba para impressão" class="botao">Preparar aba para impressão</a>
+                <a id="ctl00_ContentPlaceHolder1_hplImprimir" title="Preparar documento para impressão" class="botao">Preparar documento para impressão</a>
+            
+</div>
+        </div>
+        <input type="hidden" name="ctl00$ContentPlaceHolder1$abaSelecionada" id="ctl00_ContentPlaceHolder1_abaSelecionada">
+        
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="rodape">
+                <div id="sombraRodape">
+                </div>
+                <div id="conteudoRodape">
+                    <div id="menuRodape">
+                        <!--?xml version="1.0" encoding="iso-8859-15"?--><a href="listaSubMenu.aspx?Id=fQsOzDfuAYE=">Conheça a NF-e</a><a href="listaSubMenu.aspx?Id=nIzMon5clGU=">Serviços</a><a href="listaSubMenu.aspx?Id=33ol5hhSYZk=">Legislação</a><a href="listaSubMenu.aspx?Id=tW+YMyk/50s=">Documentos</a><a href="listaSubMenu.aspx?Id=/fwLvLUSmU8=">Downloads</a><a href="https://www1.sped.fazenda.gov.br/scripts/scaef/login/login.asp?URL=/spednfeacesso/arnfe/inicial/default.aspx&amp;Sistema=SPEDNFe%20Portal&amp;URLCert=/scripts/scaef/login/AbreCertificado/default.asp&amp;URLScaef=/scripts/scaef/scaef.dll">Área Restrita</a>
+                        <span id="ctl00_lblPortalRodape" class="labelPortalRodape">Portal da NF-e 2016 - Nota Fiscal Eletrônica</span>
+                    </div>
+                    <div id="marcaReceita">
+                        <a href="//www.receita.fazenda.gov.br" target="_blank" class="imgReceita">
+                            <!--img src="imagens/marca_Receita.png" class="imgReceita" alt="Link para o sítio da Receita Federal"/-->
+                            Receita Federal </a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tipoAmbiente">
+                <span id="ctl00_lblAmbiente"></span>
+            </div>
+
+        
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.AutoCompleteBehavior, {"completionListCssClass":"popupBusca","delimiterCharacters":"(),.! ","id":"ctl00_aceAutoCompletarBusca","minimumPrefixLength":1,"serviceMethod":"ListarAutocompletarCampoPesquisar","servicePath":"AutoCompletarBusca.asmx"}, null, null, $get("ctl00_txtPalavraChave"));
+});
+//]]>
+</script>
+<input type="hidden" value="1" id="hiddenInputToUpdateATBuffer_CommonToolkitScripts" name="hiddenInputToUpdateATBuffer_CommonToolkitScripts"></form>
+    </div>
+
+
+
+<ul id="ctl00_aceAutoCompletarBusca_completionListElem" class="popupBusca" style="display: none; visibility: hidden; position: absolute;"></ul><img id="serpro-componente-estatistica" src="http://www.receita.fazenda.gov.br/estatistica/estatistica.gif?dominio=www.nfe.fazenda.gov.br&amp;nova_visita_pagina=&amp;_=1455489072254&amp;versao=3.3" style="position: absolute; top: 0px; left: 0px; z-index: 0;"></body></html>
