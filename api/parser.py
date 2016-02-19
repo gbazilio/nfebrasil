@@ -1,6 +1,6 @@
 from lxml import html
 
-from nferoot.api.parseutils import assert_valid_html_string, sanitize, \
+from api.parseutils import assert_valid_html_string, sanitize, \
     remove_duplicate_entries
 
 

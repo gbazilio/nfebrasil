@@ -7,8 +7,8 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from nferoot.api.navigator import NFeNavigator
-from nferoot.api.errors_helper import _error_response
+from api.navigator import NFeNavigator
+from api.errors_helper import _error_response
 
 
 class NFeRoot(APIView):

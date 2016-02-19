@@ -1,5 +1,4 @@
 import os
-import json
 
 from boto.beanstalk.exception import ValidationError
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -7,9 +6,9 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from jsonschema.validators import validate
 
-from nferoot.api.middlewares import WebdriverThreadingMiddleware
-from nferoot.api.parser import NFeParser
-from nferoot.api.views import NFeRoot
+from api.middlewares import WebdriverThreadingMiddleware
+from api.parser import NFeParser
+from api.views import NFeRoot
 
 
 class NFeRootViewsTestCase(TestCase):

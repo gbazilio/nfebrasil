@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'oauth2_provider',
     'rest_framework',
+    'nferoot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,7 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 
     # My custom Middlewares
-    'nfe_root.middlewares.WebdriverThreadingMiddleware',
+    'api.middlewares.WebdriverThreadingMiddleware',
 )
 
 ROOT_URLCONF = 'nferoot.urls'

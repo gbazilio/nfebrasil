@@ -1,4 +1,4 @@
-from nferoot.api.webdriver_threading import WebdriverThread
+from api.webdriver_threading import WebdriverThread
 
 
 application_webdrivers = {}

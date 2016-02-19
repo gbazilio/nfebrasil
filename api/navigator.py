@@ -1,4 +1,4 @@
-from nferoot.api.parser import NFeParser
+from api.parser import NFeParser
 
 
 class NFeNavigator:

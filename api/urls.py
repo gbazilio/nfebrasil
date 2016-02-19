@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from nferoot.api.views import NFeRoot
+from api.views import NFeRoot
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
