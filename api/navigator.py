@@ -44,6 +44,7 @@ class NFeNavigator:
                               % (self.URL, self._BTN_SEARCH))
 
         page_source = self.driver.page_source()
+        self.driver.quit()
 
         parser = NFeParser(page_source)
         return parser.parse_to_json()
