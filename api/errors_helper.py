@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 
 
-def _error_response(self, message):
+def error_response(message):
         error_message = {
             'errors': [
                 {

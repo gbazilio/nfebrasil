@@ -52,8 +52,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    # My custom Middlewares
-    'api.middlewares.WebdriverThreadingMiddleware',
+    # # My custom Middlewares
+    # 'api.middlewares.WebdriverThreadingMiddleware',
 )
 
 ROOT_URLCONF = 'nferoot.urls'

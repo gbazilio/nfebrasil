@@ -19,7 +19,7 @@ class NFeNavigator:
             captcha = self.driver.find_element_by_id(
                 self._CAPTCHA_SRC).get_attribute('src')
         except:
-            return ValueError('No captcha image found on target URL %s '
+            raise ValueError('No captcha image found on target URL %s '
                               'when trying to search for element %s.'
                               % (self.URL, self._CAPTCHA_SRC))
 

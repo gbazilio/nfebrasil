@@ -8,22 +8,26 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from api.navigator import NFeNavigator
-from api.errors_helper import _error_response
+from api.errors_helper import error_response
+from api.decorators import embed_driver
+
+application_webdrivers = {}
 
 
 class NFeRoot(APIView):
 
     permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
 
+    @embed_driver(application_webdrivers)
     def get(self, request):
         navigator = NFeNavigator(request.driver)
 
         try:
             _captcha_src = navigator.get_captcha()
         except ValueError as e:
-            return _error_response(e.message)
+            return error_response(e.args[0])
 
-        return Response({'captcha': _captcha_src})
+        return Response({'captcha_src': _captcha_src})
 
     def post(self, request):
         driver = request.driver
@@ -36,7 +40,7 @@ class NFeRoot(APIView):
         try:
             result = navigator.get_nfe(nfe_captcha, nfe_key)
         except ValueError as e:
-            return _error_response(e.message)
+            return error_response(e.message)
 
         driver.quit()
         return JsonResponse(result)

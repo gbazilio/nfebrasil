@@ -1,4 +1,5 @@
 import os
+from unittest import mock
 
 from boto.beanstalk.exception import ValidationError
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -6,31 +7,43 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from jsonschema.validators import validate
 
-from api.middlewares import WebdriverThreadingMiddleware
 from api.parser import NFeParser
 from api.views import NFeRoot
 
 
 class NFeRootViewsTestCase(TestCase):
-    def test_should_get_captcha_src_when_get_request(self):
-        expected_json = {
+
+    @mock.patch('api.webdriver_threading.WebdriverThread.start')
+    @mock.patch('api.navigator.NFeNavigator.get_captcha')
+    def test_should_get_captcha_src_when_get_request_with_token(
+            self, mock_captcha, mock_thread):
+
+        expected_json_schema = {
             'type': 'object',
             'properties': {
                 'captcha_src': {
                     'type': 'string',
                     'pattern': '^data:image/png;base64,.+'
                 }
-            }
+            },
+            'required': ['captcha_src'],
+            'additionalProperties': False
         }
+        mock_captcha.return_value = 'data:image/png;base64,asdkjdlasdsd='
 
-        request = RequestFactory().get('/nfe')
+        # There is no need to really start the threaded web driver
+        mock_thread.return_value = None
+
+        request = RequestFactory().get(
+            '/',
+           HTTP_AUTHORIZATION='Bearer dkjsdalsj034='
+        )
         SessionMiddleware().process_request(request)
-        WebdriverThreadingMiddleware().process_request(request)
 
         response = NFeRoot().get(request)
 
         try:
-            validate(response.data, expected_json)
+            validate(response.data, expected_json_schema)
         except ValidationError as e:
             self.fail(e.message)
 
