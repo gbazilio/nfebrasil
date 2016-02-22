@@ -27,18 +27,26 @@ class WebdriverThread(threading.Thread):
         print('Finished thread %s' % self.name)
 
     def get(self, url):
+        self._increase_timeout()
         self.driver.get(url)
 
+    def _increase_timeout(self):
+        self.timeout += 10
+
     def find_element_by_id(self, element_id):
+        self._increase_timeout()
         return self.driver.find_element_by_id(element_id)
 
     def execute_script(self, script):
+        self._increase_timeout()
         self.driver.execute_script(script)
 
     def click_button(self, button_id):
+        self._increase_timeout()
         self.driver.find_element_by_id(button_id).click()
 
     def page_source(self):
+        self._increase_timeout()
         return self.driver.page_source
 
     def quit(self):

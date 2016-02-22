@@ -1,6 +1,9 @@
-from oauth2_provider.ext.rest_framework.permissions import \
+from oauth2_provider.decorators import protected_resource
+from oauth2_provider.ext.rest_framework.authentication import \
+    OAuth2Authentication
+from oauth2_provider.ext.rest_framework.permissions import TokenHasScope, \
     TokenHasReadWriteScope
-
+from oauth2_provider.views.mixins import ProtectedResourceMixin
 from rest_framework import permissions
 
 from rest_framework.response import Response
@@ -15,7 +18,8 @@ application_webdrivers = {}
 
 class NFeRoot(APIView):
 
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    permission_classes = [TokenHasScope]
+    required_scopes = ['read']
 
     @embed_driver(application_webdrivers)
     def get(self, request):
