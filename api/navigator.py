@@ -44,6 +44,9 @@ class NFeNavigator:
                               % (self.URL, self._BTN_SEARCH))
 
         page_source = self.driver.page_source()
+
+        # TODO: Check if page_source has captcha error and raise 401 with JSON
+
         self.driver.quit()
 
         parser = NFeParser(page_source)
