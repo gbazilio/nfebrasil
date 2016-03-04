@@ -1,10 +1,4 @@
-from oauth2_provider.decorators import protected_resource
-from oauth2_provider.ext.rest_framework.authentication import \
-    OAuth2Authentication
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope, \
-    TokenHasReadWriteScope
-from oauth2_provider.views.mixins import ProtectedResourceMixin
-from rest_framework import permissions
+from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
 
 from rest_framework.response import Response
 from rest_framework.views import APIView

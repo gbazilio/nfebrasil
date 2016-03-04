@@ -5,12 +5,15 @@ from selenium import webdriver
 
 
 class WebdriverThread(threading.Thread):
-    def __init__(self, timeout=50, interval=1):
+    def __init__(self, application_scoped_drivers, unique_id,
+                 timeout=50, interval=1):
         super(WebdriverThread, self).__init__()
         self.timeout = timeout
         self.interval = interval
         self.hasQuit = False
         self.driver = None
+        self.application_scoped_drivers = application_scoped_drivers
+        self.unique_id = unique_id
 
     def start(self):
         self.driver = webdriver.PhantomJS()
@@ -23,8 +26,11 @@ class WebdriverThread(threading.Thread):
             time.sleep(self.interval)
             self.timeout -= self.interval
 
-        self.driver.quit()
+        self.quit()
         print('Finished thread %s' % self.name)
+
+    def _auto_remove_from_application_scope(self):
+        del self.application_scoped_drivers[self.unique_id]
 
     def get(self, url):
         self._increase_timeout()
@@ -52,17 +58,20 @@ class WebdriverThread(threading.Thread):
     def quit(self):
         self.driver.quit()
         self.hasQuit = True
+        self._auto_remove_from_application_scope()
 
     @staticmethod
     def get_driver(application_drivers_dictionary, session_key):
         try:
             driver = application_drivers_dictionary[session_key]
             if not driver.isAlive():
-                driver = WebdriverThread()
+                driver = WebdriverThread(
+                    application_drivers_dictionary, session_key)
                 driver.start()
                 application_drivers_dictionary[session_key] = driver
         except KeyError:
-            driver = WebdriverThread()
+            driver = WebdriverThread(
+                application_drivers_dictionary, session_key)
             driver.start()
             application_drivers_dictionary[session_key] = driver
 

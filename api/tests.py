@@ -1,19 +1,20 @@
 import os
+import api.views as views
+
 from unittest import mock
 
 from boto.beanstalk.exception import ValidationError
 from django.test import TestCase
 from django.test.client import RequestFactory
 from jsonschema.validators import validate
-from rest_framework.parsers import JSONParser
-from rest_framework.request import Request
 
 from api.parser import NFeParser
-from api.views import NFeRoot
-from api.views import application_webdrivers
 
 
 class NFeRootViewsTestCase(TestCase):
+
+    def tearDown(self):
+        views.application_webdrivers.clear()
 
     @mock.patch('api.webdriver_threading.WebdriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
@@ -32,16 +33,12 @@ class NFeRootViewsTestCase(TestCase):
             'additionalProperties': False
         }
         mock_captcha.return_value = 'data:image/png;base64,asdkjdlasdsd='
-
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        request = RequestFactory().get(
-            '/',
-            HTTP_AUTHORIZATION='Bearer dkjsdalsj034='
-        )
+        request = RequestFactory().get('/', {'session': '18273319832'})
 
-        response = NFeRoot().get(request)
+        response = views.NFeRoot().get(request)
 
         try:
             validate(response.data, expected_json_schema)
@@ -55,7 +52,7 @@ class NFeRootViewsTestCase(TestCase):
             self, mock_nfe, mock_captcha, mock_thread):
 
         expected_number_of_drivers_in_scope = 1
-        expected_token_key_in_scope = 'dkjsdalsj034='
+        expected_token_key_in_scope = 'asdkj312313'
 
         mock_captcha.return_value = 'data:image/png;base64,asdkjdlasdsd='
         mock_nfe.return_value = {}
@@ -63,21 +60,19 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        token = expected_token_key_in_scope
-        auth_headers = {'HTTP_AUTHORIZATION': 'Bearer %s' % token}
-
-        get_request = RequestFactory().get('/', **auth_headers)
+        get_request = RequestFactory().get(
+            '/', {'session': expected_token_key_in_scope})
         post_request = RequestFactory().post(
-            '/', **auth_headers, content_type='application/json')
+            '/?session=%s' % expected_token_key_in_scope,
+            content_type='application/json')
         post_request.data = {'nfeAccessKey': '', 'nfeCaptcha': ''}
-        NFeRoot().get(get_request)
+        views.NFeRoot().get(get_request)
 
-        post_request = Request(post_request, parsers=[JSONParser])
-        NFeRoot().post(post_request)
+        views.NFeRoot().post(post_request)
 
         self.assertTrue(expected_token_key_in_scope in
-                        application_webdrivers.keys())
-        self.assertEquals(len(application_webdrivers.keys()),
+                        views.application_webdrivers.keys())
+        self.assertEquals(len(views.application_webdrivers.keys()),
                           expected_number_of_drivers_in_scope)
 
 
