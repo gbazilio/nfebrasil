@@ -128,6 +128,8 @@ OAUTH2_PROVIDER = {
 
 LOGIN_REDIRECT_URL = '/'
 
+PHANTOMJS_EXECUTABLE = '/usr/local/bin/phantomjs'
+
 # Email configuration
 
 EMAIL_HOST = 'smtp.sendgrid.net'
