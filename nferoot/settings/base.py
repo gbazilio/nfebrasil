@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,7 +43,7 @@ INSTALLED_APPS = (
     'oauth2_provider',
     'corsheaders',
     'rest_framework',
-    'nferoot',
+    'api',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'nferoot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +125,13 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {
     'SCOPES': {'read': 'Read scope'}
 }
+
+LOGIN_REDIRECT_URL = '/'
+
+# Email configuration
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

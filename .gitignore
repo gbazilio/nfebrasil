@@ -4,4 +4,4 @@ __pycache__
 db.sqlite3
 *.log
 nferoot/staticfiles
-bin
+bin/

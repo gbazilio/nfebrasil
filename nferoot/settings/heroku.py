@@ -5,3 +5,4 @@ DEBUG = False
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+ACCOUNT_ACTIVATION_DAYS = 1
