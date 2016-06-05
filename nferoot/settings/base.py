@@ -111,8 +111,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ## My custom application definitions
 
+### OAuth Toolkit
 CORS_ORIGIN_ALLOW_ALL = True
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope'}
+}
 
+### Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -122,17 +127,16 @@ REST_FRAMEWORK = {
     ),
 }
 
-OAUTH2_PROVIDER = {
-    'SCOPES': {'read': 'Read scope'}
-}
-
-LOGIN_REDIRECT_URL = '/'
-
+### This app
 PHANTOMJS_EXECUTABLE = '/usr/local/bin/phantomjs'
 
-# Email configuration
-
+### Django Registration
 ACCOUNT_ACTIVATION_DAYS = 1
+
+### Django
+LOGIN_REDIRECT_URL = '/'
+ALLOWED_HOSTS = ['*']
+
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
