@@ -132,6 +132,7 @@ PHANTOMJS_EXECUTABLE = '/usr/local/bin/phantomjs'
 
 # Email configuration
 
+ACCOUNT_ACTIVATION_DAYS = 1
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
