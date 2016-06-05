@@ -15,21 +15,20 @@ Abre uma sessão com o site da receita retornando um captcha para ser usado na r
 | ----  | ----- | ------------ | ----- |  
 | /api/ | GET   | -            | - 	   |
 
-* **Sucesso**
-
-  **Código:** 200 OK <br />
-  **Resposta:** `{ "captcha_src" : "data:image/png;base64,iVBORw0KGgo..." }`
+**Sucesso** `200 OK `
+```json
+{ "captcha_src" : "data:image/png;base64,iVBORw0KGgo..." }
+```
  
-* **Erro**
+**Erro** `401 UNAUTHORIZED`
+```json
+{ "detail" : "Authentication credentials were not provided." }
+```
 
-  **Código:** 401 UNAUTHORIZED <br />
-  **Resposta:** `{ "detail" : "Authentication credentials were not provided." }`
-
-* **Exemplo:**
-
-  ```
-  curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/
-  ```
+**Exemplo**
+```
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/
+```
 
 ### Recuperar dados da NF
 
@@ -40,46 +39,42 @@ Recupera dados de uma nota fiscal eletrônica que esteja acessível através do 
 | /api/ | POST  | -            | nfeAccessKey | Chave de acesso         |
 |       |       |              | nfeCaptcha	  | Texto plano do captcha  |
 
-* **Sucesso**
-
-  **Código:** 200 OK <br />
-  **Resposta:** 
-  ```json
-	{"nfe": {
-		    "dados": {
-		        "serie": number,
-		        "numero": string,
-		        "total": number
-		    },
-		    "emitente": {
-		        "cnpj": string,
-		        "razao_social": string,
-		        "nome_fantasia": string,
-		        "endereco": string,
-		        "uf": string,
-		        "cidade": string,
-		    },
-		    "items": [{
-		    	"indice": number,
-	            "descricao": string,
-	            "quantidade": number,
-	            "unidade": string,
-	            "valor": number
-		    }]
-		}
+**Sucesso** `200 OK`
+```json
+{"nfe": {
+	    "dados": {
+	        "serie": number,
+	        "numero": string,
+	        "total": number
+	    },
+	    "emitente": {
+	        "cnpj": string,
+	        "razao_social": string,
+	        "nome_fantasia": string,
+	        "endereco": string,
+	        "uf": string,
+	        "cidade": string,
+	    },
+	    "items": [{
+	    	"indice": number,
+            "descricao": string,
+            "quantidade": number,
+            "unidade": string,
+            "valor": number
+	    }]
 	}
-	```
- 
-* **Erro**
+}
+```
 
-  **Código:** 401 UNAUTHORIZED <br />
-  **Resposta:** `{ "detail" : "Authentication credentials were not provided." }`
+**Erro** `401 UNAUTHORIZED`
+```json
+{ "detail" : "Authentication credentials were not provided." }
+```
 
-* **Exemplo:**
-
-  ```
-  curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=<chave_de_acesso>&nfeCaptcha=<captcha_lowercase>" https://nfebrasil.herokuapp.com/api/
-  ```
+**Exemplo**
+```
+curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=<chave_de_acesso>&nfeCaptcha=<captcha_lowercase>" https://nfebrasil.herokuapp.com/api/
+```
 
 # Consumindo a API
 
