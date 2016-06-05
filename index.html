@@ -35,39 +35,137 @@
 
 <p>As informações são parseadas do site da <a href="http://www.nfe.fazenda.gov.br/portal/consulta.aspx?tipoConsulta=completa">Fazenda</a>.</p>
 
-<h2>
-<a id="resposta" class="anchor" href="#resposta" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resposta</h2>
+<h1>
+<a id="documentação" class="anchor" href="#documenta%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentação</h1>
 
-<div class="highlight highlight-source-json"><pre>{
-    <span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
-        <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
-            <span class="pl-s"><span class="pl-pds">"</span>serie<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>numero<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
-        },
-        <span class="pl-s"><span class="pl-pds">"</span>emitente<span class="pl-pds">"</span></span>: {
-            <span class="pl-s"><span class="pl-pds">"</span>cnpj<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>razao_social<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>nome_fantasia<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>endereco<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>uf<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>cidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-        },
-        <span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: [{
-            <span class="pl-s"><span class="pl-pds">"</span>indice<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>descricao<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>quantidade<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>unidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-            <span class="pl-s"><span class="pl-pds">"</span>valor<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
-        }]
-    }
-}</pre></div>
+<h3>
+<a id="recuperar-um-captcha" class="anchor" href="#recuperar-um-captcha" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recuperar um captcha</h3>
+
+<p>Abre uma sessão com o site da receita retornando um captcha para ser usado na recuperação dos dados na NFe.</p>
+
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Verbo</th>
+<th>Query String</th>
+<th>Dados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/</td>
+<td>GET</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<p><strong>Sucesso</strong></p>
+
+<p><strong>Código:</strong> 200 OK <br>
+<strong>Resposta:</strong> <code>{ "captcha_src" : "data:image/png;base64,iVBORw0KGgo..." }</code></p>
+</li>
+<li>
+<p><strong>Erro</strong></p>
+
+<p><strong>Código:</strong> 401 UNAUTHORIZED <br>
+<strong>Resposta:</strong> <code>{ "detail" : "Authentication credentials were not provided." }</code></p>
+</li>
+<li>
+<p><strong>Exemplo:</strong></p>
+
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/
+</code></pre>
+</li>
+</ul>
+
+<h3>
+<a id="recuperar-dados-da-nf" class="anchor" href="#recuperar-dados-da-nf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recuperar dados da NF</h3>
+
+<p>Recupera dados de uma nota fiscal eletrônica que esteja acessível através do site da Fazenda.</p>
+
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Verbo</th>
+<th>Query String</th>
+<th>Dados</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/</td>
+<td>POST</td>
+<td>-</td>
+<td>nfeAccessKey</td>
+<td>Chave de acesso</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>nfeCaptcha</td>
+<td>Texto plano do captcha</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<p><strong>Sucesso</strong></p>
+
+<p><strong>Código:</strong> 200 OK <br>
+<strong>Resposta:</strong> </p>
+
+<div class="highlight highlight-source-json"><pre>  {<span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
+          <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
+              <span class="pl-s"><span class="pl-pds">"</span>serie<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>numero<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
+          },
+          <span class="pl-s"><span class="pl-pds">"</span>emitente<span class="pl-pds">"</span></span>: {
+              <span class="pl-s"><span class="pl-pds">"</span>cnpj<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>razao_social<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>nome_fantasia<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>endereco<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>uf<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>cidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+          },
+          <span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: [{
+              <span class="pl-s"><span class="pl-pds">"</span>indice<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>descricao<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>quantidade<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>unidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+              <span class="pl-s"><span class="pl-pds">"</span>valor<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
+          }]
+      }
+  }</pre></div>
+</li>
+<li>
+<p><strong>Erro</strong></p>
+
+<p><strong>Código:</strong> 401 UNAUTHORIZED <br>
+<strong>Resposta:</strong> <code>{ "detail" : "Authentication credentials were not provided." }</code></p>
+</li>
+<li>
+<p><strong>Exemplo:</strong></p>
+
+<pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=&lt;chave_de_acesso&gt;&amp;nfeCaptcha=&lt;captcha_lowercase&gt;" https://nfebrasil.herokuapp.com/api/
+</code></pre>
+</li>
+</ul>
 
 <h1>
 <a id="consumindo-a-api" class="anchor" href="#consumindo-a-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Consumindo a API</h1>
 
-<h2>
-<a id="1-credenciais" class="anchor" href="#1-credenciais" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Credenciais</h2>
+<h3>
+<a id="1-autenticação" class="anchor" href="#1-autentica%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Autenticação</h3>
 
 <p>Faço o cadastro da aplicação que irá consumir a API em (<a href="https://nfebrasil.herokuapp.com/o/applications">https://nfebrasil.herokuapp.com/o/applications</a>).</p>
 
@@ -77,8 +175,8 @@ Grant type: <code>Client credentials</code></p>
 
 <p><strong>Importante:</strong> É recomendado o uso de fluxos OAuth não baseados em redirecionamento. Por isso não é necessário se preocupar com o campo <code>redirect uris</code>.</p>
 
-<h2>
-<a id="2-access-token" class="anchor" href="#2-access-token" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Access Token</h2>
+<h3>
+<a id="11-obtenha-o-access-token" class="anchor" href="#11-obtenha-o-access-token" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1.1 Obtenha o Access Token</h3>
 
 <p>Client credential:</p>
 
@@ -92,8 +190,8 @@ Grant type: <code>Client credentials</code></p>
     <span class="pl-s"><span class="pl-pds">"</span>token_type<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Bearer<span class="pl-pds">"</span></span>
 }</pre></div>
 
-<h2>
-<a id="3-captcha" class="anchor" href="#3-captcha" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Captcha</h2>
+<h3>
+<a id="2-captcha" class="anchor" href="#2-captcha" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Captcha</h3>
 
 <p>O site da fazenda solicita um captcha. Atualmente a forma que a API lida com isso é repassando o captcha para ser resolvido no lado do usuário:</p>
 
@@ -112,8 +210,8 @@ Grant type: <code>Client credentials</code></p>
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>&lt;captcha_src&gt;<span class="pl-pds">"</span></span> /&gt;</pre></div>
 
-<h2>
-<a id="4-informações-da-nfe" class="anchor" href="#4-informa%C3%A7%C3%B5es-da-nfe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Informações da NFe</h2>
+<h3>
+<a id="3-informações-da-nfe" class="anchor" href="#3-informa%C3%A7%C3%B5es-da-nfe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Informações da NFe</h3>
 
 <p>Com o mesmo access_token usado para fazer a requisição do captcha, faça um nova requisição passando o captcha decifrado e a chave de acesso:</p>
 
