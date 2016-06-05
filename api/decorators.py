@@ -15,7 +15,7 @@ def embed_driver(drivers_dictionary):
             return func(*args, **kwargs)
 
         def _get_webdriver_unique_key(request):
-            return request.GET['session']
+            return request.auth.token
 
         return func_wrapper
     return embed_driver_decorator
