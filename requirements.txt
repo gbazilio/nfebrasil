@@ -7,6 +7,7 @@ django-registration-redux==1.4
 djangorestframework==3.3.3
 gunicorn==19.6.0
 lxml==3.6.0
+newrelic==2.66.0.49
 oauthlib==1.0.3
 psycopg2==2.6.1
 selenium==2.53.2
