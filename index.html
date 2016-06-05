@@ -195,7 +195,9 @@ Grant type: <code>Client credentials</code></p>
 <h3>
 <a id="3-informações-da-nfe" class="anchor" href="#3-informa%C3%A7%C3%B5es-da-nfe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Informações da NFe</h3>
 
-<p>Com o mesmo access_token usado para fazer a requisição do captcha, faça um nova requisição passando o captcha decifrado e a chave de acesso:</p>
+<p>Com o mesmo access token usado para fazer a requisição do captcha, faça um nova requisição passando o captcha decifrado e a chave de acesso:</p>
+
+<p><strong>Importante</strong>: O tempo máximo entre a requisição do captcha e essa é de 50 segundos.</p>
 
 <pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=&lt;chave_de_acesso&gt;&amp;nfeCaptcha=&lt;captcha_lowercase&gt;" https://nfebrasil.herokuapp.com/api/
 </code></pre>
