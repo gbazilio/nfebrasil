@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Nfebrasil by gbazilio</title>
+    <title>NFeBrasil by gbazilio</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -15,7 +15,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Nfebrasil</h1>
+        <h1>NFeBrasil</h1>
         <p>API de Nota Fiscal</p>
 
         <p class="view"><a href="https://github.com/gbazilio/nfebrasil">View the Project on GitHub <small>gbazilio/nfebrasil</small></a></p>
@@ -62,26 +62,18 @@
 </tbody>
 </table>
 
-<ul>
-<li>
-<p><strong>Sucesso</strong></p>
+<p><strong>Sucesso</strong> <code>200 OK</code></p>
 
-<p><strong>Código:</strong> 200 OK <br>
-<strong>Resposta:</strong> <code>{ "captcha_src" : "data:image/png;base64,iVBORw0KGgo..." }</code></p>
-</li>
-<li>
-<p><strong>Erro</strong></p>
+<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>captcha_src<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>data:image/png;base64,iVBORw0KGgo...<span class="pl-pds">"</span></span> }</pre></div>
 
-<p><strong>Código:</strong> 401 UNAUTHORIZED <br>
-<strong>Resposta:</strong> <code>{ "detail" : "Authentication credentials were not provided." }</code></p>
-</li>
-<li>
-<p><strong>Exemplo:</strong></p>
+<p><strong>Erro</strong> <code>401 UNAUTHORIZED</code></p>
+
+<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>detail<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Authentication credentials were not provided.<span class="pl-pds">"</span></span> }</pre></div>
+
+<p><strong>Exemplo</strong></p>
 
 <pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/
 </code></pre>
-</li>
-</ul>
 
 <h3>
 <a id="recuperar-dados-da-nf" class="anchor" href="#recuperar-dados-da-nf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recuperar dados da NF</h3>
@@ -116,50 +108,40 @@
 </tbody>
 </table>
 
-<ul>
-<li>
-<p><strong>Sucesso</strong></p>
+<p><strong>Sucesso</strong> <code>200 OK</code></p>
 
-<p><strong>Código:</strong> 200 OK <br>
-<strong>Resposta:</strong> </p>
+<div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
+            <span class="pl-s"><span class="pl-pds">"</span>serie<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>numero<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
+        },
+        <span class="pl-s"><span class="pl-pds">"</span>emitente<span class="pl-pds">"</span></span>: {
+            <span class="pl-s"><span class="pl-pds">"</span>cnpj<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>razao_social<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>nome_fantasia<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>endereco<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>uf<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>cidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+        },
+        <span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: [{
+            <span class="pl-s"><span class="pl-pds">"</span>indice<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>descricao<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>quantidade<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>unidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>valor<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
+        }]
+    }
+}</pre></div>
 
-<div class="highlight highlight-source-json"><pre>  {<span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
-          <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
-              <span class="pl-s"><span class="pl-pds">"</span>serie<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>numero<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>total<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
-          },
-          <span class="pl-s"><span class="pl-pds">"</span>emitente<span class="pl-pds">"</span></span>: {
-              <span class="pl-s"><span class="pl-pds">"</span>cnpj<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>razao_social<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>nome_fantasia<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>endereco<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>uf<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>cidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-          },
-          <span class="pl-s"><span class="pl-pds">"</span>items<span class="pl-pds">"</span></span>: [{
-              <span class="pl-s"><span class="pl-pds">"</span>indice<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>descricao<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>quantidade<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>unidade<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
-              <span class="pl-s"><span class="pl-pds">"</span>valor<span class="pl-pds">"</span></span>: <span class="pl-ii">number</span>
-          }]
-      }
-  }</pre></div>
-</li>
-<li>
-<p><strong>Erro</strong></p>
+<p><strong>Erro</strong> <code>401 UNAUTHORIZED</code></p>
 
-<p><strong>Código:</strong> 401 UNAUTHORIZED <br>
-<strong>Resposta:</strong> <code>{ "detail" : "Authentication credentials were not provided." }</code></p>
-</li>
-<li>
-<p><strong>Exemplo:</strong></p>
+<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>detail<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Authentication credentials were not provided.<span class="pl-pds">"</span></span> }</pre></div>
+
+<p><strong>Exemplo</strong></p>
 
 <pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=&lt;chave_de_acesso&gt;&amp;nfeCaptcha=&lt;captcha_lowercase&gt;" https://nfebrasil.herokuapp.com/api/
 </code></pre>
-</li>
-</ul>
 
 <h1>
 <a id="consumindo-a-api" class="anchor" href="#consumindo-a-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Consumindo a API</h1>
