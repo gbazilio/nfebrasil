@@ -16,7 +16,12 @@ class WebdriverThread(threading.Thread):
         self.unique_id = unique_id
 
     def start(self):
-        self.driver = webdriver.PhantomJS()
+        import os
+        from nferoot.settings.base import BASE_DIR
+
+        phantomjs_executable_path = os.path.join(BASE_DIR, '../bin/phantomjs')
+
+        self.driver = webdriver.PhantomJS(phantomjs_executable_path)
         super(WebdriverThread, self).start()
         print('Started thread %s' % self.name)
 
