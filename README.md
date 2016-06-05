@@ -127,7 +127,9 @@ O valor de `captcha_src` deve ser entrada para a formação de uma imagem, por e
 
 ### 3. Informações da NFe
 
-Com o mesmo access_token usado para fazer a requisição do captcha, faça um nova requisição passando o captcha decifrado e a chave de acesso:
+Com o mesmo access token usado para fazer a requisição do captcha, faça um nova requisição passando o captcha decifrado e a chave de acesso:
+
+**Importante**: O tempo máximo entre a requisição do captcha e essa é de 50 segundos.
 
 ```
 curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=<chave_de_acesso>&nfeCaptcha=<captcha_lowercase>" https://nfebrasil.herokuapp.com/api/
