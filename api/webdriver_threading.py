@@ -16,9 +16,9 @@ class WebdriverThread(threading.Thread):
         self.unique_id = unique_id
 
     def start(self):
-        from nferoot.settings import base
+        from django.conf import settings
 
-        self.driver = webdriver.PhantomJS(base.PHANTOMJS_EXECUTABLE)
+        self.driver = webdriver.PhantomJS(settings.PHANTOMJS_EXECUTABLE)
         super(WebdriverThread, self).start()
         print('Started thread %s' % self.name)
 
