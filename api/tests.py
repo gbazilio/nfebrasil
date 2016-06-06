@@ -1,12 +1,15 @@
 import os
+from collections import namedtuple
+
 import api.views as views
 
 from unittest import mock
 
-from boto.beanstalk.exception import ValidationError
 from django.test import TestCase
 from django.test.client import RequestFactory
+
 from jsonschema.validators import validate
+from jsonschema.exceptions import ValidationError
 
 from api.parser import NFeParser
 
@@ -36,7 +39,8 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        request = RequestFactory().get('/', {'session': '18273319832'})
+        request = RequestFactory().get('/')
+        self._mock_request_auth_token(request, '18273319832')
 
         response = views.NFeRoot().get(request)
 
@@ -44,6 +48,11 @@ class NFeRootViewsTestCase(TestCase):
             validate(response.data, expected_json_schema)
         except ValidationError as e:
             self.fail(e.message)
+
+    def _mock_request_auth_token(self, request, token):
+        auth_mock = namedtuple('AuthMock', 'token')
+        auth = auth_mock(token=token)
+        setattr(request, 'auth', auth)
 
     @mock.patch('api.webdriver_threading.WebdriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
@@ -60,11 +69,14 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        get_request = RequestFactory().get(
-            '/', {'session': expected_token_key_in_scope})
+        get_request = RequestFactory().get('/')
+        self._mock_request_auth_token(get_request, expected_token_key_in_scope)
+
         post_request = RequestFactory().post(
-            '/?session=%s' % expected_token_key_in_scope,
-            content_type='application/json')
+            '/', content_type='application/json')
+        self._mock_request_auth_token(
+            post_request, expected_token_key_in_scope)
+
         post_request.data = {'nfeAccessKey': '', 'nfeCaptcha': ''}
         views.NFeRoot().get(get_request)
 
@@ -74,7 +86,6 @@ class NFeRootViewsTestCase(TestCase):
                         views.application_webdrivers.keys())
         self.assertEquals(len(views.application_webdrivers.keys()),
                           expected_number_of_drivers_in_scope)
-
 
 
 class NFeRJParserTestCase(TestCase):
