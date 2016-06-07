@@ -1,38 +1,64 @@
 {% load i18n %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
-    <title>{% block title %}User test{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="API Nota Fiscal">
+    <meta name="author" content="Guilherme Bazilio">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "nferoot/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static "nferoot/css/ie10-viewport-bug-workaround.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "nferoot/css/jumbotron-narrow.css" %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
+
+    <title>NFeBrasil API - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    <div id="header">
-    {% block header %}
-    <a href="{% url 'index' %}">{% trans "Home" %}</a> | 
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{% url 'index' %}">{% trans "Home" %}</a></li>
+                    {% if user.is_authenticated %}
+                        <li role="presentation"><a href="/o/applications">{% trans "Applications "%}</a></li>
+                        <li role="presentation"><a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a></li>
+                        <li role="presentation"><a href="{% url 'auth_logout' %}">{% trans "Log out" %} ({{ user.username }})</a></li>
+                    {% else %}
+                        <li role="presentation"><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <h3 class="text-muted">NFeBrasil API</h3>
+        </div>
 
-    {% if user.is_authenticated %}
-        {% trans "Logged in" %}: {{ user.username }} 
-        (<a href="/o/applications">Applications</a> |
-        <a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
-        <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
-    {% else %}
-       <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
-    {% endif %}
-    <hr />
-    {% endblock %}
+        {% block content %}{% endblock %}
+
+        <footer class="footer">
+            <p>NFeBrasil API - Consumo de dados de NFe estruturado.</p>
+        </footer>
     </div>
 
-    <div id="content">
-    {% block content %}{% endblock %}
-    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
-    <div id="footer">
-    {% block footer %}
-        <hr />
-    {% endblock %}
-    </div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
-
-</html>
