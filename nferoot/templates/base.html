@@ -28,6 +28,8 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/default.min.css">
 
+    {% block css %}{% endblock %}
+
     <title>NFeBrasil API - {% block title %}{% endblock %}</title>
 </head>
 
@@ -40,7 +42,7 @@
                     {% if user.is_authenticated %}
                         <li role="presentation"><a href="/o/applications">{% trans "Applications "%}</a></li>
                         <li role="presentation"><a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a></li>
-                        <li role="presentation"><a href="{% url 'auth_logout' %}">{% trans "Log out" %} ({{ user.username }})</a></li>
+                        <li role="presentation"><a href="{% url 'auth_logout' %}?next=/ ">{% trans "Log out" %} ({{ user.username }})</a></li>
                     {% else %}
                         <li role="presentation"><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></li>
                     {% endif %}
