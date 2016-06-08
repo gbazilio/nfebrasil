@@ -1,4 +1,6 @@
+from oauth2_provider.decorators import protected_resource
 from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
+from rest_framework.decorators import api_view
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -9,22 +11,24 @@ from api.decorators import embed_driver
 
 application_webdrivers = {}
 
+@api_view(['GET'])
+@protected_resource(scopes=['read'])
+@embed_driver(application_webdrivers)
+def get_captcha(request):
+    navigator = NFeNavigator(request.driver)
+
+    try:
+        _captcha_src = navigator.get_captcha()
+    except ValueError as e:
+        return error_response(e.args[0])
+
+    return Response({'captcha_src': _captcha_src})
+
 
 class NFeRoot(APIView):
 
     permission_classes = [TokenHasScope]
     required_scopes = ['read']
-
-    @embed_driver(application_webdrivers)
-    def get(self, request):
-        navigator = NFeNavigator(request.driver)
-
-        try:
-            _captcha_src = navigator.get_captcha()
-        except ValueError as e:
-            return error_response(e.args[0])
-
-        return Response({'captcha_src': _captcha_src})
 
     @embed_driver(application_webdrivers)
     def post(self, request):

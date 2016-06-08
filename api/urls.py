@@ -1,8 +1,8 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from api.views import NFeRoot
+from api.views import NFeRoot, get_captcha
 
 urlpatterns = [
-    url(r'^$', NFeRoot.as_view()),
+    url(r'^captcha/?$', get_captcha),
 ]
