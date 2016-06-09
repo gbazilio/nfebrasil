@@ -4,10 +4,10 @@ import time
 from selenium import webdriver
 
 
-class WebdriverThread(threading.Thread):
+class WebDriverThread(threading.Thread):
     def __init__(self, application_scoped_drivers, unique_id,
                  timeout=50, interval=1):
-        super(WebdriverThread, self).__init__()
+        super(WebDriverThread, self).__init__()
         self.timeout = timeout
         self.interval = interval
         self.hasQuit = False
@@ -19,7 +19,7 @@ class WebdriverThread(threading.Thread):
         from django.conf import settings
 
         self.driver = webdriver.PhantomJS(settings.PHANTOMJS_EXECUTABLE)
-        super(WebdriverThread, self).start()
+        super(WebDriverThread, self).start()
         print('Started thread %s' % self.name)
 
     def run(self):
@@ -67,12 +67,12 @@ class WebdriverThread(threading.Thread):
         try:
             driver = application_drivers_dictionary[session_key]
             if not driver.isAlive():
-                driver = WebdriverThread(
+                driver = WebDriverThread(
                     application_drivers_dictionary, session_key)
                 driver.start()
                 application_drivers_dictionary[session_key] = driver
         except KeyError:
-            driver = WebdriverThread(
+            driver = WebDriverThread(
                 application_drivers_dictionary, session_key)
             driver.start()
             application_drivers_dictionary[session_key] = driver

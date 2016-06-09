@@ -1,7 +1,8 @@
 import os
-from collections import namedtuple
 
 import api.views as views
+
+from collections import namedtuple
 
 from unittest import mock
 
@@ -19,7 +20,7 @@ class NFeRootViewsTestCase(TestCase):
     def tearDown(self):
         views.application_webdrivers.clear()
 
-    @mock.patch('api.webdriver_threading.WebdriverThread.start')
+    @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     def test_should_get_captcha_src_when_get_request_with_token(
             self, mock_captcha, mock_thread):
@@ -42,7 +43,7 @@ class NFeRootViewsTestCase(TestCase):
         request = RequestFactory().get('/')
         self._mock_request_auth_token(request, '18273319832')
 
-        response = views.NFeRoot().get(request)
+        response = views._get_captcha(request)
 
         try:
             validate(response.data, expected_json_schema)
@@ -54,7 +55,7 @@ class NFeRootViewsTestCase(TestCase):
         auth = auth_mock(token=token)
         setattr(request, 'auth', auth)
 
-    @mock.patch('api.webdriver_threading.WebdriverThread.start')
+    @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     @mock.patch('api.navigator.NFeNavigator.get_nfe')
     def test_should_get_nfe_with_same_webdriver_when_post_request_with_token(
@@ -78,9 +79,9 @@ class NFeRootViewsTestCase(TestCase):
             post_request, expected_token_key_in_scope)
 
         post_request.data = {'nfeAccessKey': '', 'nfeCaptcha': ''}
-        views.NFeRoot().get(get_request)
+        views._get_captcha(get_request)
 
-        views.NFeRoot().post(post_request)
+        views._get_nfe(post_request)
 
         self.assertTrue(expected_token_key_in_scope in
                         views.application_webdrivers.keys())
