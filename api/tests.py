@@ -1,16 +1,14 @@
 import os
 from collections import namedtuple
-
-import api.views as views
-
 from unittest import mock
 
 from django.test import TestCase
-from django.test.client import RequestFactory
-
-from jsonschema.validators import validate
 from jsonschema.exceptions import ValidationError
+from jsonschema.validators import validate
+from rest_framework.test import APIRequestFactory
+from rest_framework.views import APIView
 
+import api.views as views
 from api.parser import NFeParser
 
 
@@ -19,9 +17,9 @@ class NFeRootViewsTestCase(TestCase):
     def tearDown(self):
         views.application_webdrivers.clear()
 
-    @mock.patch('api.webdriver_threading.WebdriverThread.start')
+    @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
-    def test_should_get_captcha_src_when_get_request_with_token(
+    def test_should_get_captcha_src(
             self, mock_captcha, mock_thread):
 
         expected_json_schema = {
@@ -39,10 +37,10 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        request = RequestFactory().get('/')
-        self._mock_request_auth_token(request, '18273319832')
-
-        response = views.NFeRoot().get(request)
+        nfe_key = '1' * 44
+        request = self._make_authenticated_request_object(
+            '18273319832', nfe_key)
+        response = views._get_nfe(request, nfe_key)
 
         try:
             validate(response.data, expected_json_schema)
@@ -54,10 +52,20 @@ class NFeRootViewsTestCase(TestCase):
         auth = auth_mock(token=token)
         setattr(request, 'auth', auth)
 
-    @mock.patch('api.webdriver_threading.WebdriverThread.start')
+    def _make_authenticated_request_object(self, token, nfe_key, captcha=None):
+
+        url = '/nfe/%s' % nfe_key
+        url = url + '?captcha=%s' % captcha if captcha else url
+
+        captcha_get_request = APIRequestFactory().get(url)
+        captcha_get_request = APIView().initialize_request(captcha_get_request)
+        self._mock_request_auth_token(captcha_get_request, token)
+        return captcha_get_request
+
+    @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     @mock.patch('api.navigator.NFeNavigator.get_nfe')
-    def test_should_get_nfe_with_same_webdriver_when_post_request_with_token(
+    def test_should_get_nfe_with_using_same_webdriver(
             self, mock_nfe, mock_captcha, mock_thread):
 
         expected_number_of_drivers_in_scope = 1
@@ -69,18 +77,17 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
-        get_request = RequestFactory().get('/')
-        self._mock_request_auth_token(get_request, expected_token_key_in_scope)
+        # NFe key
+        nfe_key = '1' * 44
 
-        post_request = RequestFactory().post(
-            '/', content_type='application/json')
-        self._mock_request_auth_token(
-            post_request, expected_token_key_in_scope)
+        captcha_get_request = self._make_authenticated_request_object(
+            expected_token_key_in_scope, nfe_key)
+        captcha_get_response = views._get_nfe(captcha_get_request, nfe_key)
 
-        post_request.data = {'nfeAccessKey': '', 'nfeCaptcha': ''}
-        views.NFeRoot().get(get_request)
-
-        views.NFeRoot().post(post_request)
+        nfe_get_request = self._make_authenticated_request_object(
+            expected_token_key_in_scope, nfe_key,
+            captcha_get_response.data['captcha_src'])
+        views._get_nfe(nfe_get_request, nfe_key)
 
         self.assertTrue(expected_token_key_in_scope in
                         views.application_webdrivers.keys())

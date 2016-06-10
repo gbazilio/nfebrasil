@@ -1,47 +1,37 @@
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
-
+from oauth2_provider.decorators import protected_resource
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from api.navigator import NFeNavigator
-from api.errors_helper import error_response, error_response_missing_parameters
 from api.decorators import embed_driver
+from api.errors_helper import error_response
+from api.navigator import NFeNavigator
 
 application_webdrivers = {}
 
 
-class NFeRoot(APIView):
+@api_view(['GET'])
+@protected_resource(scopes=['read'])
+def get_nfe(request, nfe_key):
+    return _get_nfe(request, nfe_key)
 
-    permission_classes = [TokenHasScope]
-    required_scopes = ['read']
 
-    @embed_driver(application_webdrivers)
-    def get(self, request):
-        navigator = NFeNavigator(request.driver)
+@embed_driver(application_webdrivers)
+def _get_nfe(request, nfe_key):
 
+    navigator = NFeNavigator(request.driver)
+
+    try:
+        captcha = request.GET['captcha']
+    except KeyError:
         try:
             _captcha_src = navigator.get_captcha()
         except ValueError as e:
             return error_response(e.args[0])
-
         return Response({'captcha_src': _captcha_src})
 
-    @embed_driver(application_webdrivers)
-    def post(self, request):
-        driver = request.driver
+    try:
+        nfe_json = navigator.get_nfe(captcha, nfe_key)
+    except ValueError as e:
+        return error_response(e.message)
 
-        try:
-            nfe_key = request.data['nfeAccessKey']
-            nfe_captcha = request.data['nfeCaptcha']
-        except KeyError as e:
-            return error_response_missing_parameters(e.args[0])
-
-        navigator = NFeNavigator(driver)
-
-        try:
-            nfe_json = navigator.get_nfe(nfe_captcha, nfe_key)
-        except ValueError as e:
-            return error_response(e.message)
-
-        return Response(nfe_json)
-
+    return Response(nfe_json)
