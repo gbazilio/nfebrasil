@@ -39,46 +39,9 @@
 <a id="documentação" class="anchor" href="#documenta%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentação</h1>
 
 <h3>
-<a id="recuperar-um-captcha" class="anchor" href="#recuperar-um-captcha" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recuperar um captcha</h3>
-
-<p>Abre uma sessão com o site da receita retornando um captcha para ser usado na recuperação dos dados na NFe.</p>
-
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th>Verbo</th>
-<th>Query String</th>
-<th>Dados</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/api/</td>
-<td>GET</td>
-<td>-</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Sucesso</strong> <code>200 OK</code></p>
-
-<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>captcha_src<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>data:image/png;base64,iVBORw0KGgo...<span class="pl-pds">"</span></span> }</pre></div>
-
-<p><strong>Erro</strong> <code>401 UNAUTHORIZED</code></p>
-
-<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>detail<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Authentication credentials were not provided.<span class="pl-pds">"</span></span> }</pre></div>
-
-<p><strong>Exemplo</strong></p>
-
-<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/
-</code></pre>
-
-<h3>
 <a id="recuperar-dados-da-nf" class="anchor" href="#recuperar-dados-da-nf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recuperar dados da NF</h3>
 
-<p>Recupera dados de uma nota fiscal eletrônica que esteja acessível através do site da Fazenda.</p>
+<p>Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do site da Fazenda, usando um captcha capturado do site.</p>
 
 <table>
 <thead>
@@ -86,29 +49,32 @@
 <th>URL</th>
 <th>Verbo</th>
 <th>Query String</th>
-<th>Dados</th>
 <th>Descrição</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>/api/</td>
-<td>POST</td>
+<td>/api/nfe/</td>
+<td>GET</td>
 <td>-</td>
-<td>nfeAccessKey</td>
-<td>Chave de acesso</td>
+<td>Busca um captcha</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td>nfeCaptcha</td>
-<td>Texto plano do captcha</td>
+<td>/api/nfe/</td>
+<td>GET</td>
+<td>captcha</td>
+<td>Quando usado, recupera dados da NFE</td>
 </tr>
 </tbody>
 </table>
 
-<p><strong>Sucesso</strong> <code>200 OK</code></p>
+<p><strong>Sucesso</strong> <code>200 OK</code> - Buscando captcha</p>
+
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>captcha_src<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>data:image/png;base64,iVBORw0K...<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<p><strong>Sucesso</strong> <code>200 OK</code> - Buscando dados da NFe</p>
 
 <div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
         <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
@@ -134,13 +100,16 @@
     }
 }</pre></div>
 
-<p><strong>Erro</strong> <code>401 UNAUTHORIZED</code></p>
+<p><strong>Erro</strong> <code>403 Forbidden</code></p>
 
-<div class="highlight highlight-source-json"><pre>{ <span class="pl-s"><span class="pl-pds">"</span>detail<span class="pl-pds">"</span></span> : <span class="pl-s"><span class="pl-pds">"</span>Authentication credentials were not provided.<span class="pl-pds">"</span></span> }</pre></div>
+<p><strong>Exemplo buscando captcha</strong></p>
 
-<p><strong>Exemplo</strong></p>
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;
+</code></pre>
 
-<pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=&lt;chave_de_acesso&gt;&amp;nfeCaptcha=&lt;captcha_lowercase&gt;" https://nfebrasil.herokuapp.com/api/
+<p><strong>Exemplo buscando informações da NFe</strong></p>
+
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;?captcha=&lt;captcha&gt;
 </code></pre>
 
 <h1>
@@ -149,7 +118,7 @@
 <h3>
 <a id="1-autenticação" class="anchor" href="#1-autentica%C3%A7%C3%A3o" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Autenticação</h3>
 
-<p>Faço o cadastro da aplicação que irá consumir a API em (<a href="https://nfebrasil.herokuapp.com/o/applications">https://nfebrasil.herokuapp.com/o/applications</a>).</p>
+<p>Faço o cadastro da aplicação que irá consumir a API em <a href="https://nfebrasil.herokuapp.com/o/applications">https://nfebrasil.herokuapp.com/o/applications</a>.</p>
 
 <p>Ex:
 Client type: <code>Confidential</code><br>
@@ -177,9 +146,9 @@ Grant type: <code>Client credentials</code></p>
 
 <p>O site da fazenda solicita um captcha. Atualmente a forma que a API lida com isso é repassando o captcha para ser resolvido no lado do usuário:</p>
 
-<p>Faça a primeira requisição para (<a href="https://nfebrasil.herokuapp.com/api/">https://nfebrasil.herokuapp.com/api/</a>) com o Access Token da requisição anterior.</p>
+<p>Faça a primeira requisição para <a href="https://nfebrasil.herokuapp.com/api/nfe/">https://nfebrasil.herokuapp.com/api/nfe/</a> com o Access Token da requisição anterior.</p>
 
-<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_nfe&gt;
 </code></pre>
 
 <p>Receberá a seguinte resposta:</p>
@@ -199,7 +168,7 @@ Grant type: <code>Client credentials</code></p>
 
 <p><strong>Importante</strong>: O tempo máximo entre a requisição do captcha e essa é de 50 segundos.</p>
 
-<pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=&lt;chave_de_acesso&gt;&amp;nfeCaptcha=&lt;captcha_lowercase&gt;" https://nfebrasil.herokuapp.com/api/
+<pre><code>curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;?captcha=&lt;captcha&gt;
 </code></pre>
 
 <h1>
