@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'corsheaders',
     'rest_framework',
     'api',
+    'nferoot',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -136,7 +137,7 @@ PHANTOMJS_EXECUTABLE = '/usr/local/bin/phantomjs'
 ACCOUNT_ACTIVATION_DAYS = 1
 
 ### Django
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/o/applications'
 ALLOWED_HOSTS = ['*']
 
 EMAIL_HOST = 'smtp.sendgrid.net'

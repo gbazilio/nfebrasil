@@ -2,5 +2,41 @@
 {% load i18n %}
 
 {% block content %}
-Index page
+
+    <div class="jumbotron">
+        <h2>Acesso estruturado a dados de NF-e</h2>
+        <p class="lead">Facilita a manipulação e acesso a dados de uma NF-e, através da chave de acesso da nota.</p>
+        <p><a class="btn btn-lg btn-success" href="http://gbazilio.com/nfebrasil/" role="button">Comece a usar</a></p>
+      </div>
+
+      <div class="row marketing">
+          <div class="col-xs-12">
+              <h4>Requisitando dados da Nota Fiscal</h4>
+              <pre><code class="bash">curl -H "Authorization: Bearer access_token" --data "nfeAccessKey=chave_de_acesso&nfeCaptcha=captcha_lowercase" https://nfebrasil.herokuapp.com/api/</code></pre>
+              <pre><code class="json">{"nfe": {
+        "dados": {
+            "serie": number,
+            "numero": string,
+            "total": number
+        },
+        "emitente": {
+            "cnpj": string,
+            "razao_social": string,
+            "nome_fantasia": string,
+            "endereco": string,
+            "uf": string,
+            "cidade": string,
+        },
+        "items": [{
+            "indice": number,
+            "descricao": string,
+            "quantidade": number,
+            "unidade": string,
+            "valor": number
+        }]
+    }
+}</code></pre>
+          </div>
+      </div>
+
 {% endblock %}
