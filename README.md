@@ -7,39 +7,26 @@ As informações são parseadas do site da [Fazenda](http://www.nfe.fazenda.gov.
 
 # Documentação
 
-### Recuperar um captcha
-
-Abre uma sessão com o site da receita retornando um captcha para ser usado na recuperação dos dados na NFe.
-
-| URL   | Verbo | Query String | Dados |
-| ----  | ----- | ------------ | ----- |  
-| /api/ | GET   | -            | - 	   |
-
-**Sucesso** `200 OK `
-```json
-{ "captcha_src" : "data:image/png;base64,iVBORw0KGgo..." }
-```
- 
-**Erro** `401 UNAUTHORIZED`
-```json
-{ "detail" : "Authentication credentials were not provided." }
-```
-
-**Exemplo**
-```
-curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/
-```
-
 ### Recuperar dados da NF
 
-Recupera dados de uma nota fiscal eletrônica que esteja acessível através do site da Fazenda.
 
-| URL   | Verbo | Query String | Dados 		  | Descrição 				|
-| ----  | ----- | ------------ | ------------ | ----------------------- |  
-| /api/ | POST  | -            | nfeAccessKey | Chave de acesso         |
-|       |       |              | nfeCaptcha	  | Texto plano do captcha  |
+Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do site da Fazenda, usando um captcha capturado do site.
 
-**Sucesso** `200 OK`
+
+| URL  				   | Verbo | Query String | Descrição 				            |
+| -------------------- | ----- | ------------ | ----------------------------------- |  
+| /api/nfe/<chave_nfe> | GET   | -            | Busca um captcha                    |
+| /api/nfe/<chave_nfe> | GET   | captcha      | Quando usado, recupera dados da NFE |
+
+
+**Sucesso** `200 OK` - Buscando captcha
+```json
+{
+	"captcha_src": "data:image/png;base64,iVBORw0K..."
+}
+```
+
+**Sucesso** `200 OK` - Buscando dados da NFe
 ```json
 {"nfe": {
 	    "dados": {
@@ -66,20 +53,22 @@ Recupera dados de uma nota fiscal eletrônica que esteja acessível através do 
 }
 ```
 
-**Erro** `401 UNAUTHORIZED`
-```json
-{ "detail" : "Authentication credentials were not provided." }
+**Erro** `403 Forbidden`
+
+**Exemplo buscando captcha**
+```
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>
 ```
 
-**Exemplo**
+**Exemplo buscando informações da NFe**
 ```
-curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=<chave_de_acesso>&nfeCaptcha=<captcha_lowercase>" https://nfebrasil.herokuapp.com/api/
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>?captcha=<captcha>
 ```
 
 # Consumindo a API
 
 ### 1. Autenticação
-Faço o cadastro da aplicação que irá consumir a API em (https://nfebrasil.herokuapp.com/o/applications).
+Faço o cadastro da aplicação que irá consumir a API em https://nfebrasil.herokuapp.com/o/applications.
 
 Ex:
 Client type: `Confidential`  
@@ -106,10 +95,10 @@ curl --user <client_id>:<client_secret> --data "grant_type=client_credentials" h
 ### 2. Captcha
 O site da fazenda solicita um captcha. Atualmente a forma que a API lida com isso é repassando o captcha para ser resolvido no lado do usuário:
 
-Faça a primeira requisição para (https://nfebrasil.herokuapp.com/api/) com o Access Token da requisição anterior.
+Faça a primeira requisição para https://nfebrasil.herokuapp.com/api/nfe/<chave_nfe> com o Access Token da requisição anterior.
 
 ```
-curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_nfe>
 ```
 
 Receberá a seguinte resposta:
@@ -132,7 +121,7 @@ Com o mesmo access token usado para fazer a requisição do captcha, faça um no
 **Importante**: O tempo máximo entre a requisição do captcha e essa é de 50 segundos.
 
 ```
-curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" --data "nfeAccessKey=<chave_de_acesso>&nfeCaptcha=<captcha_lowercase>" https://nfebrasil.herokuapp.com/api/
+curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>?captcha=<captcha>
 ```
 
 # Considerações
