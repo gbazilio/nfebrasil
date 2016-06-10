@@ -1,54 +1,37 @@
 from oauth2_provider.decorators import protected_resource
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope
 from rest_framework.decorators import api_view
-
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from api.navigator import NFeNavigator
-from api.errors_helper import error_response, error_response_missing_parameters
 from api.decorators import embed_driver
+from api.errors_helper import error_response
+from api.navigator import NFeNavigator
 
 application_webdrivers = {}
 
-@api_view(['GET'])
-@protected_resource(scopes=['read'])
-def get_captcha(request):
-    return _get_captcha(request)
 
 @api_view(['GET'])
 @protected_resource(scopes=['read'])
-def get_nfe(request):
-    return _get_nfe(request)
+def get_nfe(request, nfe_key):
+    return _get_nfe(request, nfe_key)
 
 
 @embed_driver(application_webdrivers)
-def _get_captcha(request):
+def _get_nfe(request, nfe_key):
+
     navigator = NFeNavigator(request.driver)
-    try:
-        _captcha_src = navigator.get_captcha()
-    except ValueError as e:
-        return error_response(e.args[0])
-    return Response({'captcha_src': _captcha_src})
-
-
-@embed_driver(application_webdrivers)
-def _get_nfe(request):
-    driver = request.driver
 
     try:
-        nfe_key = request.data['nfeAccessKey']
-        nfe_captcha = request.data['nfeCaptcha']
-    except KeyError as e:
-        return error_response_missing_parameters(e.args[0])
-
-    navigator = NFeNavigator(driver)
+        captcha = request.GET['captcha']
+    except KeyError:
+        try:
+            _captcha_src = navigator.get_captcha()
+        except ValueError as e:
+            return error_response(e.args[0])
+        return Response({'captcha_src': _captcha_src})
 
     try:
-        nfe_json = navigator.get_nfe(nfe_captcha, nfe_key)
+        nfe_json = navigator.get_nfe(captcha, nfe_key)
     except ValueError as e:
         return error_response(e.message)
 
     return Response(nfe_json)
-
-
