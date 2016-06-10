@@ -19,7 +19,7 @@ class NFeRootViewsTestCase(TestCase):
 
     @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
-    def test_should_get_captcha_src_when_get_request_with_token(
+    def test_should_get_captcha_src(
             self, mock_captcha, mock_thread):
 
         expected_json_schema = {
@@ -37,10 +37,10 @@ class NFeRootViewsTestCase(TestCase):
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
 
+        nfe_key = '1' * 44
         request = self._make_authenticated_request_object(
-            '18273319832', '1' * 44)
-
-        response = views._get_nfe(request, '1' * 44)
+            '18273319832', nfe_key)
+        response = views._get_nfe(request, nfe_key)
 
         try:
             validate(response.data, expected_json_schema)
@@ -52,10 +52,20 @@ class NFeRootViewsTestCase(TestCase):
         auth = auth_mock(token=token)
         setattr(request, 'auth', auth)
 
+    def _make_authenticated_request_object(self, token, nfe_key, captcha=None):
+
+        url = '/nfe/%s' % nfe_key
+        url = url + '?captcha=%s' % captcha if captcha else url
+
+        captcha_get_request = APIRequestFactory().get(url)
+        captcha_get_request = APIView().initialize_request(captcha_get_request)
+        self._mock_request_auth_token(captcha_get_request, token)
+        return captcha_get_request
+
     @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     @mock.patch('api.navigator.NFeNavigator.get_nfe')
-    def test_should_get_nfe_with_same_webdriver_when_post_request_with_token(
+    def test_should_get_nfe_with_using_same_webdriver(
             self, mock_nfe, mock_captcha, mock_thread):
 
         expected_number_of_drivers_in_scope = 1
@@ -83,16 +93,6 @@ class NFeRootViewsTestCase(TestCase):
                         views.application_webdrivers.keys())
         self.assertEquals(len(views.application_webdrivers.keys()),
                           expected_number_of_drivers_in_scope)
-
-    def _make_authenticated_request_object(self, token, nfe_key, captcha=None):
-
-        url = '/nfe/%s' % nfe_key
-        url = url + '?captcha=%s' % captcha if captcha else url
-
-        captcha_get_request = APIRequestFactory().get(url)
-        captcha_get_request = APIView().initialize_request(captcha_get_request)
-        self._mock_request_auth_token(captcha_get_request, token)
-        return captcha_get_request
 
 
 class NFeRJParserTestCase(TestCase):
