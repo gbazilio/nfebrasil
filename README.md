@@ -15,8 +15,8 @@ Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do
 
 | URL  				   | Verbo | Query String | Descrição 				            |
 | -------------------- | ----- | ------------ | ----------------------------------- |  
-| /api/nfe/<chave_nfe> | GET   | -            | Busca um captcha                    |
-| /api/nfe/<chave_nfe> | GET   | captcha      | Quando usado, recupera dados da NFE |
+| /api/nfe/{chave_nfe} | GET   | -            | Busca um captcha                    |
+| /api/nfe/{chave_nfe} | GET   | captcha      | Quando usado, recupera dados da NFE |
 
 
 **Sucesso** `200 OK` - Buscando captcha
