@@ -54,13 +54,13 @@
 </thead>
 <tbody>
 <tr>
-<td>/api/nfe/</td>
+<td>/api/nfe/{chave_nfe}</td>
 <td>GET</td>
 <td>-</td>
 <td>Busca um captcha</td>
 </tr>
 <tr>
-<td>/api/nfe/</td>
+<td>/api/nfe/{chave_nfe}</td>
 <td>GET</td>
 <td>captcha</td>
 <td>Quando usado, recupera dados da NFE</td>
@@ -70,11 +70,17 @@
 
 <p><strong>Sucesso</strong> <code>200 OK</code> - Buscando captcha</p>
 
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;
+</code></pre>
+
 <div class="highlight highlight-source-json"><pre>{
     <span class="pl-s"><span class="pl-pds">"</span>captcha_src<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>data:image/png;base64,iVBORw0K...<span class="pl-pds">"</span></span>
 }</pre></div>
 
 <p><strong>Sucesso</strong> <code>200 OK</code> - Buscando dados da NFe</p>
+
+<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;?captcha=&lt;captcha&gt;
+</code></pre>
 
 <div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>nfe<span class="pl-pds">"</span></span>: {
         <span class="pl-s"><span class="pl-pds">"</span>dados<span class="pl-pds">"</span></span>: {
@@ -100,17 +106,19 @@
     }
 }</pre></div>
 
-<p><strong>Erro</strong> <code>403 Forbidden</code></p>
+<p><strong>Erro</strong> <code>403 Forbidden</code> - Credenciais inválidas</p>
 
-<p><strong>Exemplo buscando captcha</strong></p>
+<p><strong>Erro</strong> <code>502 Bad Gateway</code> - Modificação no site da Receita</p>
 
-<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;
-</code></pre>
-
-<p><strong>Exemplo buscando informações da NFe</strong></p>
-
-<pre><code>curl -H "Authorization: Bearer &lt;access_token&gt;" https://nfebrasil.herokuapp.com/api/nfe/&lt;chave_de_acesso&gt;?captcha=&lt;captcha&gt;
-</code></pre>
+<div class="highlight highlight-source-json"><pre>{  
+   <span class="pl-s"><span class="pl-pds">"</span>errors<span class="pl-pds">"</span></span>:[  
+      {  
+         <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span>: <span class="pl-c1">502</span>,
+         <span class="pl-s"><span class="pl-pds">"</span>humanMessage<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>,
+         <span class="pl-s"><span class="pl-pds">"</span>developerMessage<span class="pl-pds">"</span></span>: <span class="pl-ii">string</span>
+      }
+   ]
+}</pre></div>
 
 <h1>
 <a id="consumindo-a-api" class="anchor" href="#consumindo-a-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Consumindo a API</h1>
@@ -177,9 +185,10 @@ Grant type: <code>Client credentials</code></p>
 <ul>
 <li>A versão está em desenvolvimento. Sugira o que quiser.</li>
 <li>O slash <code>/</code> no final das URLs são importantes.</li>
-<li>A API não é e provavelmente não será estável. O parseamento usa XPath e por isso qualquer alteração na página de exibição da NF no site da Fazenda irá quebrar a resposta.</li>
+<li>A API não é e provavelmente não será estável. O parseamento usa XPath e por isso qualquer alteração na página de exibição da NF no site da Fazenda poderá quebrar a resposta.</li>
 <li>O código estará no GitHub em breve.</li>
 <li>Por pelo menos 30 minutos diário o serviço ficará offline pois está hospedado na conta free do Heroku.</li>
+<li>Em breve, deixarei as rotas e códigos de resposta com mais semântica.</li>
 </ul>
       </section>
       <footer>
