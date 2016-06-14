@@ -20,6 +20,9 @@ Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do
 
 
 **Sucesso** `200 OK` - Buscando captcha
+```
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>
+```
 ```json
 {
 	"captcha_src": "data:image/png;base64,iVBORw0K..."
@@ -27,6 +30,9 @@ Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do
 ```
 
 **Sucesso** `200 OK` - Buscando dados da NFe
+```
+curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>?captcha=<captcha>
+```
 ```json
 {"nfe": {
 	    "dados": {
@@ -53,16 +59,19 @@ Recupera dados de uma nota fiscal eletrônica, que esteja acessível através do
 }
 ```
 
-**Erro** `403 Forbidden`
+**Erro** `403 Forbidden` - Credenciais inválidas
 
-**Exemplo buscando captcha**
-```
-curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>
-```
-
-**Exemplo buscando informações da NFe**
-```
-curl -H "Authorization: Bearer <access_token>" https://nfebrasil.herokuapp.com/api/nfe/<chave_de_acesso>?captcha=<captcha>
+**Erro** `502 Bad Gateway` - Modificação no site da Receita
+```json
+{  
+   "errors":[  
+      {  
+         "status": 502,
+         "humanMessage": string,
+         "developerMessage": string
+      }
+   ]
+}
 ```
 
 # Consumindo a API
@@ -128,6 +137,7 @@ curl -H "Authorization: Bearer nuT0noX8eJgQQXc0o0mWL6uMoCFk88" https://nfebrasil
 
 - A versão está em desenvolvimento. Sugira o que quiser.
 - O slash `/` no final das URLs são importantes.
-- A API não é e provavelmente não será estável. O parseamento usa XPath e por isso qualquer alteração na página de exibição da NF no site da Fazenda irá quebrar a resposta.
+- A API não é e provavelmente não será estável. O parseamento usa XPath e por isso qualquer alteração na página de exibição da NF no site da Fazenda poderá quebrar a resposta.
 - O código estará no GitHub em breve.
 - Por pelo menos 30 minutos diário o serviço ficará offline pois está hospedado na conta free do Heroku.
+- Em breve, deixarei as rotas e códigos de resposta com mais semântica.
