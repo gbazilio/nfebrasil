@@ -27,19 +27,19 @@ class NFeNavigator:
 
     def get_nfe(self, nfe_captcha, nfe_key):
 
-        self.driver.execute_script(
-                'document.getElementById("%s").value = "%s";' % (
-                    self._NFE_CAPTCHA,
-                    nfe_captcha))
-        self.driver.execute_script(
-                'document.getElementById("%s").value = "%s";' % (
-                    self._NFE_KEY,
-                    nfe_key))
-
         try:
+            self.driver.execute_script(
+                    'document.getElementById("%s").value = "%s";' % (
+                        self._NFE_CAPTCHA,
+                        nfe_captcha))
+            self.driver.execute_script(
+                    'document.getElementById("%s").value = "%s";' % (
+                        self._NFE_KEY,
+                        nfe_key))
+
             self.driver.find_element_by_id(self._BTN_SEARCH).click()
         except:
-            return ValueError('No Continue button found on target URL %s '
+            raise ValueError('No Continue button found on target URL %s '
                               'when trying to search for element %s.'
                               % (self.URL, self._BTN_SEARCH))
 

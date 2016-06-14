@@ -31,9 +31,6 @@ class WebDriverThread(threading.Thread):
         self.quit()
         print('Finished thread %s' % self.name)
 
-    def _auto_remove_from_application_scope(self):
-        del self.application_scoped_drivers[self.unique_id]
-
     def get(self, url):
         self._increase_timeout()
         self.driver.get(url)
@@ -41,7 +38,7 @@ class WebDriverThread(threading.Thread):
     def _increase_timeout(self):
         self.timeout += 10
 
-    def find_element_by_id(self, element_id):
+    def c(self, element_id):
         self._increase_timeout()
         return self.driver.find_element_by_id(element_id)
 
@@ -61,6 +58,9 @@ class WebDriverThread(threading.Thread):
         self.driver.quit()
         self.hasQuit = True
         self._auto_remove_from_application_scope()
+
+    def _auto_remove_from_application_scope(self):
+        del self.application_scoped_drivers[self.unique_id]
 
     @staticmethod
     def get_driver(application_drivers_dictionary, session_key):

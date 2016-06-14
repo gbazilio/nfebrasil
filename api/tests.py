@@ -1,15 +1,23 @@
 import os
+import uuid
 from collections import namedtuple
 from unittest import mock
 
+import datetime
+from autofixture.base import AutoFixture
 from django.test import TestCase
+from django.test.client import Client
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
-from rest_framework.test import APIRequestFactory
+from oauth2_provider.models import AccessToken
+from rest_framework import status
+from rest_framework.test import APIRequestFactory, APIClient
 from rest_framework.views import APIView
 
 import api.views as views
+from api import errors_helper
 from api.parser import NFeParser
+from api.webdriver_threading import WebDriverThread
 
 
 class NFeRootViewsTestCase(TestCase):
@@ -95,7 +103,7 @@ class NFeRootViewsTestCase(TestCase):
                           expected_number_of_drivers_in_scope)
 
 
-class NFeRJParserTestCase(TestCase):
+class NFeParserTestCase(TestCase):
     def setUp(self):
         asset_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
@@ -144,3 +152,89 @@ class NFeRJParserTestCase(TestCase):
         result = sut.parse_to_json()
 
         self.assertDictEqual(expected, result)
+
+
+class NFeRoutesTestCase(TestCase):
+    fixtures = ['oauth2_valid_token.json']
+
+    def setUp(self):
+        self.access_token = AccessToken.objects.last()
+
+    def tearDown(self):
+        thread = WebDriverThread.get_driver(
+            views.application_webdrivers, self.access_token.token)
+        thread.quit()
+
+    @mock.patch('api.navigator.NFeNavigator.get_captcha')
+    def test_should_get_a_valid_captcha(self, mock_captcha):
+        nfe_key = '11223344556677889900112233445566778899112233'
+        expected_captcha_src = 'data:image/png;base64,asdkjdlasdsd='
+
+        mock_captcha.return_value = expected_captcha_src
+
+        sut = Client(HTTP_AUTHORIZATION='Bearer ' + self.access_token.token)
+        response = sut.get('/api/nfe/%s' % nfe_key)
+
+        self.assertEquals(status.HTTP_200_OK, response.status_code)
+        self.assertEquals(expected_captcha_src, response.data['captcha_src'])
+
+    @mock.patch('selenium.webdriver.PhantomJS.find_element_by_id')
+    def test_should_get_502_when_captcha_isnt_available(
+            self, mock_find_element_by_id):
+        nfe_key = '11223344556677889900112233445566778899112233'
+        expected_error_message = {
+            'errors': [
+                {
+                    'status': status.HTTP_502_BAD_GATEWAY,
+                    'humanMessage': 'A pagina da receita sofreu '
+                                    'modificacoes estruturais no HTML. '
+                                    'Entre em contato com o desensolvedor '
+                                    'desse modulo.',
+                    'developerMessage': 'No captcha image found on target URL '
+                                        'http://www.nfe.fazenda.gov.br/portal/'
+                                        'consulta.aspx?tipoConsulta=completa&'
+                                        'tipoConteudo=XbSeqxE8pl8= when trying'
+                                        ' to search for element ctl00_'
+                                        'ContentPlaceHolder1_imgCaptcha.'
+                }
+            ]
+        }
+
+        mock_find_element_by_id.side_effect = Exception()
+
+        sut = Client(HTTP_AUTHORIZATION='Bearer ' + self.access_token.token)
+        response = sut.get('/api/nfe/%s' % nfe_key)
+
+        self.assertEquals(status.HTTP_502_BAD_GATEWAY, response.status_code)
+        self.assertDictEqual(expected_error_message, response.data)
+
+    @mock.patch('selenium.webdriver.PhantomJS.execute_script')
+    def test_should_get_502_when_continue_button_isnt_available(
+            self, mock_execute_script):
+        nfe_key = '11223344556677889900112233445566778899112233'
+        expected_error_message = {
+            'errors': [
+                {
+                    'status': status.HTTP_502_BAD_GATEWAY,
+                    'humanMessage': 'A pagina da receita sofreu '
+                                    'modificacoes estruturais no HTML. '
+                                    'Entre em contato com o desensolvedor '
+                                    'desse modulo.',
+                    'developerMessage': 'No Continue button found on target '
+                                        'URL http://www.nfe.fazenda.gov.br/'
+                                        'portal/consulta.aspx?tipoConsulta'
+                                        '=completa&tipoConteudo=XbSeqxE8pl8= '
+                                        'when trying to search for element '
+                                        'ctl00_ContentPlaceHolder1_'
+                                        'btnConsultar.'
+                }
+            ]
+        }
+
+        mock_execute_script.side_effect = Exception()
+
+        sut = Client(HTTP_AUTHORIZATION='Bearer ' + self.access_token.token)
+        response = sut.get('/api/nfe/%s' % nfe_key, data={'captcha': '123456'})
+
+        self.assertEquals(status.HTTP_502_BAD_GATEWAY, response.status_code)
+        self.assertDictEqual(expected_error_message, response.data)

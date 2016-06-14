@@ -1,4 +1,5 @@
 from oauth2_provider.decorators import protected_resource
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -32,6 +33,6 @@ def _get_nfe(request, nfe_key):
     try:
         nfe_json = navigator.get_nfe(captcha, nfe_key)
     except ValueError as e:
-        return error_response(e.message)
+        return error_response(e.args[0])
 
     return Response(nfe_json)
