@@ -1,21 +1,17 @@
 import os
-import uuid
 from collections import namedtuple
 from unittest import mock
 
-import datetime
-from autofixture.base import AutoFixture
 from django.test import TestCase
 from django.test.client import Client
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 from oauth2_provider.models import AccessToken
 from rest_framework import status
-from rest_framework.test import APIRequestFactory, APIClient
+from rest_framework.test import APIRequestFactory
 from rest_framework.views import APIView
 
 import api.views as views
-from api import errors_helper
 from api.parser import NFeParser
 from api.webdriver_threading import WebDriverThread
 
