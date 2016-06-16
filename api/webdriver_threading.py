@@ -38,7 +38,7 @@ class WebDriverThread(threading.Thread):
     def _increase_timeout(self):
         self.timeout += 10
 
-    def c(self, element_id):
+    def find_element_by_id(self, element_id):
         self._increase_timeout()
         return self.driver.find_element_by_id(element_id)
 
