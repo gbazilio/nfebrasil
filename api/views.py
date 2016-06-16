@@ -19,6 +19,8 @@ def get_nfe(request, nfe_key):
 @embed_driver(application_webdrivers)
 def _get_nfe(request, nfe_key):
 
+    # TODO: load nfe info from cache, if possible
+
     navigator = NFeNavigator(request.driver)
 
     try:
@@ -27,6 +29,7 @@ def _get_nfe(request, nfe_key):
         try:
             _captcha_src = navigator.get_captcha()
         except ValueError as e:
+            request.driver.quit()
             return error_response(e.args[0])
         return Response({'captcha_src': _captcha_src})
 
