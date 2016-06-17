@@ -21,10 +21,11 @@ class NFeRootViewsTestCase(TestCase):
     def tearDown(self):
         views.application_webdrivers.clear()
 
+    @mock.patch('api.webdriver_threading.WebDriverThread.quit')
     @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     def test_should_get_captcha_src(
-            self, mock_captcha, mock_thread):
+            self, mock_captcha, mock_thread, mock_quit):
 
         expected_json_schema = {
             'type': 'object',
@@ -40,6 +41,7 @@ class NFeRootViewsTestCase(TestCase):
         mock_captcha.return_value = 'data:image/png;base64,asdkjdlasdsd='
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
+        mock_quit.return_value = None
 
         nfe_key = '1' * 44
         request = self._make_authenticated_request_object(
@@ -66,11 +68,12 @@ class NFeRootViewsTestCase(TestCase):
         self._mock_request_auth_token(captcha_get_request, token)
         return captcha_get_request
 
+    @mock.patch('api.webdriver_threading.WebDriverThread.quit')
     @mock.patch('api.webdriver_threading.WebDriverThread.start')
     @mock.patch('api.navigator.NFeNavigator.get_captcha')
     @mock.patch('api.navigator.NFeNavigator.get_nfe')
     def test_should_get_nfe_with_using_same_webdriver(
-            self, mock_nfe, mock_captcha, mock_thread):
+            self, mock_nfe, mock_captcha, mock_thread, mock_quit):
 
         expected_number_of_drivers_in_scope = 1
         expected_token_key_in_scope = 'asdkj312313'
@@ -80,6 +83,7 @@ class NFeRootViewsTestCase(TestCase):
 
         # There is no need to really start the threaded web driver
         mock_thread.return_value = None
+        mock_quit.return_value = None
 
         # NFe key
         nfe_key = '1' * 44

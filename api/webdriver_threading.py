@@ -20,7 +20,7 @@ class WebDriverThread(threading.Thread):
 
         self.driver = webdriver.PhantomJS(settings.PHANTOMJS_EXECUTABLE)
         super(WebDriverThread, self).start()
-        print('Started thread %s' % self.name)
+        print('Started thread %s - %s' % (self.name, self.unique_id))
 
     def run(self):
         while self.timeout > 0 and not self.hasQuit:
@@ -29,7 +29,7 @@ class WebDriverThread(threading.Thread):
             self.timeout -= self.interval
 
         self.quit()
-        print('Finished thread %s' % self.name)
+        print('Finished thread %s - %s' % (self.name, self.unique_id))
 
     def get(self, url):
         self._increase_timeout()
@@ -55,9 +55,9 @@ class WebDriverThread(threading.Thread):
         return self.driver.page_source
 
     def quit(self):
+        self._auto_remove_from_application_scope()
         self.driver.quit()
         self.hasQuit = True
-        self._auto_remove_from_application_scope()
 
     def _auto_remove_from_application_scope(self):
         del self.application_scoped_drivers[self.unique_id]

@@ -7,9 +7,15 @@ def embed_driver(drivers_dictionary):
             request = args[0]
 
             driver = WebDriverThread.get_driver(
-                    drivers_dictionary, request.auth.token)
+                drivers_dictionary, request.auth.token)
+
+            if 'captcha' not in request.GET:
+                driver.quit()
+                driver = WebDriverThread.get_driver(
+                        drivers_dictionary, request.auth.token)
 
             request.driver = driver
+
             return func(*args, **kwargs)
 
         return func_wrapper
