@@ -60,7 +60,10 @@ class WebDriverThread(threading.Thread):
         self.hasQuit = True
 
     def _auto_remove_from_application_scope(self):
-        del self.application_scoped_drivers[self.unique_id]
+        try:
+            del self.application_scoped_drivers[self.unique_id]
+        except KeyError:
+            return
 
     @staticmethod
     def get_driver(application_drivers_dictionary, session_key):
