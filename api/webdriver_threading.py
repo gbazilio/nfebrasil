@@ -1,3 +1,4 @@
+import os
 import threading
 import time
 
@@ -24,7 +25,8 @@ class WebDriverThread(threading.Thread):
 
     def run(self):
         while self.timeout > 0 and not self.hasQuit:
-            print('Timing out... %d' % self.timeout)
+            print('Timing out... %d - %s,%s' % (
+                self.timeout, os.getppid(), os.getpid()))
             time.sleep(self.interval)
             self.timeout -= self.interval
 
