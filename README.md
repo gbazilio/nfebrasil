@@ -1,6 +1,9 @@
 NFeBrasil API
 ---
 [![Build Status](https://travis-ci.org/gbazilio/nfebrasil.svg?branch=master)](https://travis-ci.org/gbazilio/nfebrasil)
+[![Code Climate](https://codeclimate.com/github/gbazilio/nfebrasil/badges/gpa.svg)](https://codeclimate.com/github/gbazilio/nfebrasil)
+[![Test Coverage](https://codeclimate.com/github/gbazilio/nfebrasil/badges/coverage.svg)](https://codeclimate.com/github/gbazilio/nfebrasil/coverage)
+[![Issue Count](https://codeclimate.com/github/gbazilio/nfebrasil/badges/issue_count.svg)](https://codeclimate.com/github/gbazilio/nfebrasil)
 
 A princípio, essa API tem um único objetivo que é recuperar dados de uma nota fiscal referente a chave de acesso desejada.
 
