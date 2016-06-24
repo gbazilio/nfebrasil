@@ -1,5 +1,6 @@
 NFeBrasil API
 ---
+[![Build Status](https://travis-ci.org/gbazilio/nfebrasil.svg?branch=master)](https://travis-ci.org/gbazilio/nfebrasil)
 
 A princípio, essa API tem um único objetivo que é recuperar dados de uma nota fiscal referente a chave de acesso desejada.
 
