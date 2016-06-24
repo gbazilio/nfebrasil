@@ -1,9 +1,0 @@
-language: python
-python:
-  - "3.5"
-
-install: "pip install -r requirements.txt"
-
-script: DJANGO_SETTINGS_MODULE=nferoot.settings.travis coverage run --source='api' manage.py test
-
-after_success: codeclimate-test-reporter
