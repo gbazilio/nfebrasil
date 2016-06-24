@@ -1,5 +1,8 @@
+codeclimate-test-reporter==0.1.2
+coverage==4.1
 dj-database-url==0.4.1
 Django==1.9.6
+django-autofixture==0.12.1
 django-braces==1.9.0
 django-cors-headers==1.1.0
 django-oauth-toolkit==0.10.0
@@ -11,6 +14,7 @@ lxml==3.6.0
 newrelic==2.66.0.49
 oauthlib==1.0.3
 psycopg2==2.6.1
+requests==2.10.0
 selenium==2.53.2
 six==1.10.0
 whitenoise==3.2
