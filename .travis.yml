@@ -4,9 +4,6 @@ python:
 
 install: "pip install -r requirements.txt"
 
-env:
-- DATABASE_URL=postgres:///testing
-- SENDGRID_USERNAME=testing
-- SENDGRID_PASSWORD=testing
+script: DJANGO_SETTINGS_MODULE=nferoot.settings.travis coverage run --source='api' manage.py test
 
-script: python manage.py test --settings=nferoot.settings.travis
+after_success: codeclimate-test-reporter
