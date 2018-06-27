@@ -3,7 +3,7 @@ from api.parser import NFeParser
 
 class NFeNavigator:
 
-    URL = 'http://www.nfe.fazenda.gov.br/portal/consulta.aspx?tipoConsulta=completa&tipoConteudo=XbSeqxE8pl8='
+    URL = 'http://www.nfe.fazenda.gov.br/portal/consultaResumoCompletaAntiga.aspx?tipoConsulta=completa&tipoConteudo=XbSeqxE8pl8='
 
     _CAPTCHA_SRC = 'ctl00_ContentPlaceHolder1_imgCaptcha'
     _BTN_SEARCH = 'ctl00_ContentPlaceHolder1_btnConsultar'
